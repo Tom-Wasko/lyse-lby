@@ -71,52 +71,7 @@ def add_candle_patterns(df: pd.DataFrame, settings: Dict, settings_dir: Optional
         val_v = float(val) if val is not None else 0.0
         set_candle_settings(setting_type, range_type, lb_v, val_v)
 
-    # Apply per-pattern settings similar to kontrola_taliba mappings
-    apply_setting(CST.BodyShort, RT.RealBody, "HAMMER_BODY_SHORT_LB", "HAMMER_BODY_SHORT")
-    apply_setting(CST.ShadowLong, RT.RealBody, "HAMMER_SHADOW_LONG_LB", "HAMMER_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "HAMMER_SHADOW_VERY_SHORT_LB", "HAMMER_SHADOW_VERY_SHORT")
-    apply_setting(CST.Near, RT.HighLow, "HAMMER_NEAR_LB", "HAMMER_NEAR")
-
-    apply_setting(CST.BodyShort, RT.RealBody, "INVERTED_HAMMER_BODY_SHORT_LB", "INVERTED_HAMMER_BODY_SHORT")
-    apply_setting(CST.ShadowLong, RT.RealBody, "INVERTED_HAMMER_SHADOW_LONG_LB", "INVERTED_HAMMER_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "INVERTED_HAMMER_SHADOW_VERY_SHORT_LB", "INVERTED_HAMMER_SHADOW_VERY_SHORT")
-
-    apply_setting(CST.BodyShort, RT.RealBody, "SHOOTING_STAR_BODY_SHORT_LB", "SHOOTING_STAR_BODY_SHORT")
-    apply_setting(CST.ShadowLong, RT.RealBody, "SHOOTING_STAR_SHADOW_LONG_LB", "SHOOTING_STAR_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "SHOOTING_STAR_SHADOW_VERY_SHORT_LB", "SHOOTING_STAR_SHADOW_VERY_SHORT")
-
-    apply_setting(CST.BodyShort, RT.RealBody, "HANGING_MAN_BODY_SHORT_LB", "HANGING_MAN_BODY_SHORT")
-    apply_setting(CST.ShadowLong, RT.RealBody, "HANGING_MAN_SHADOW_LONG_LB", "HANGING_MAN_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "HANGING_MAN_SHADOW_VERY_SHORT_LB", "HANGING_MAN_SHADOW_VERY_SHORT")
-    apply_setting(CST.Near, RT.HighLow, "HANGING_MAN_NEAR_LB", "HANGING_MAN_NEAR")
-
-    apply_setting(CST.BodyDoji, RT.HighLow, "DOJI_BODY_LB", "DOJI_BODY")
-    apply_setting(CST.ShadowLong, RT.RealBody, "LONG_LEGGED_DOJI_SHADOW_LONG_LB", "LONG_LEGGED_DOJI_SHADOW_LONG")
-    apply_setting(CST.ShadowLong, RT.RealBody, "DRAGONFLY_DOJI_SHADOW_LONG_LB", "DRAGONFLY_DOJI_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "DRAGONFLY_DOJI_SHADOW_VERY_SHORT_LB", "DRAGONFLY_DOJI_SHADOW_VERY_SHORT")
-    apply_setting(CST.ShadowLong, RT.RealBody, "GRAVESTONE_DOJI_SHADOW_LONG_LB", "GRAVESTONE_DOJI_SHADOW_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "GRAVESTONE_DOJI_SHADOW_VERY_SHORT_LB", "GRAVESTONE_DOJI_SHADOW_VERY_SHORT")
-    apply_setting(CST.BodyShort, RT.RealBody, "SPINNING_TOP_BODY_SHORT_LB", "SPINNING_TOP_BODY_SHORT")
-    apply_setting(CST.BodyLong, RT.RealBody, "MARUBOZU_BODY_LONG_LB", "MARUBOZU_BODY_LONG")
-    apply_setting(CST.ShadowVeryShort, RT.HighLow, "MARUBOZU_SHADOW_VERY_SHORT_LB", "MARUBOZU_SHADOW_VERY_SHORT")
-
-    # double/triple
-    apply_setting(CST.BodyLong, RT.RealBody, "PIERCING_BODY_LONG_LB", "PIERCING_BODY_LONG")
-    apply_setting(CST.BodyLong, RT.RealBody, "ABANDONED_BABY_BODY_LONG_LB", "ABANDONED_BABY_BODY_LONG")
-    apply_setting(CST.BodyDoji, RT.HighLow, "ABANDONED_BABY_DOJI_LB", "ABANDONED_BABY_DOJI")
-    apply_setting(CST.BodyLong, RT.RealBody, "DARK_CLOUD_BODY_LONG_LB", "DARK_CLOUD_BODY_LONG")
-    apply_setting(CST.BodyLong, RT.RealBody, "MORNING_STAR_BODY_LONG_LB", "MORNING_STAR_BODY_LONG")
-    apply_setting(CST.BodyShort, RT.RealBody, "MORNING_STAR_BODY_SHORT_LB", "MORNING_STAR_BODY_SHORT")
-    apply_setting(CST.BodyLong, RT.RealBody, "MORNING_DOJI_STAR_BODY_LONG_LB", "MORNING_DOJI_STAR_BODY_LONG")
-    apply_setting(CST.BodyDoji, RT.HighLow, "MORNING_DOJI_STAR_DOJI_LB", "MORNING_DOJI_STAR_DOJI")
-    apply_setting(CST.BodyLong, RT.RealBody, "EVENING_STAR_BODY_LONG_LB", "EVENING_STAR_BODY_LONG")
-    apply_setting(CST.BodyShort, RT.RealBody, "EVENING_STAR_BODY_SHORT_LB", "EVENING_STAR_BODY_SHORT")
-    apply_setting(CST.BodyLong, RT.RealBody, "EVENING_DOJI_STAR_BODY_LONG_LB", "EVENING_DOJI_STAR_BODY_LONG")
-    apply_setting(CST.BodyDoji, RT.HighLow, "EVENING_DOJI_STAR_DOJI_LB", "EVENING_DOJI_STAR_DOJI")
-    apply_setting(CST.BodyLong, RT.RealBody, "THREE_WHITE_SOLDIERS_BODY_LONG_LB", "THREE_WHITE_SOLDIERS_BODY_LONG")
-    apply_setting(CST.BodyLong, RT.RealBody, "THREE_BLACK_CROWS_BODY_LONG_LB", "THREE_BLACK_CROWS_BODY_LONG")
-
-    # apply patterns
+    # Get OHLC data once
     o = df["Open"].values
     h = df["High"].values
     l = df["Low"].values
@@ -124,23 +79,130 @@ def add_candle_patterns(df: pd.DataFrame, settings: Dict, settings_dir: Optional
 
     patterns = pd.DataFrame(index=df.index)
 
-    # Single-candle examples
+    # HAMMER: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyShort, RT.RealBody, "HAMMER_BODY_SHORT_LB", "HAMMER_BODY_SHORT")
+    apply_setting(CST.ShadowLong, RT.RealBody, "HAMMER_SHADOW_LONG_LB", "HAMMER_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "HAMMER_SHADOW_VERY_SHORT_LB", "HAMMER_SHADOW_VERY_SHORT")
+    apply_setting(CST.Near, RT.HighLow, "HAMMER_NEAR_LB", "HAMMER_NEAR")
     patterns["hammer"] = talib.CDLHAMMER(o, h, l, c)
-    patterns["inverted_hammer"] = talib.CDLINVERTEDHAMMER(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
 
-    # Double
+    # INVERTED_HAMMER: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyShort, RT.RealBody, "INVERTED_HAMMER_BODY_SHORT_LB", "INVERTED_HAMMER_BODY_SHORT")
+    apply_setting(CST.ShadowLong, RT.RealBody, "INVERTED_HAMMER_SHADOW_LONG_LB", "INVERTED_HAMMER_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "INVERTED_HAMMER_SHADOW_VERY_SHORT_LB", "INVERTED_HAMMER_SHADOW_VERY_SHORT")
+    patterns["inverted_hammer"] = talib.CDLINVERTEDHAMMER(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # SHOOTING_STAR: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyShort, RT.RealBody, "SHOOTING_STAR_BODY_SHORT_LB", "SHOOTING_STAR_BODY_SHORT")
+    apply_setting(CST.ShadowLong, RT.RealBody, "SHOOTING_STAR_SHADOW_LONG_LB", "SHOOTING_STAR_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "SHOOTING_STAR_SHADOW_VERY_SHORT_LB", "SHOOTING_STAR_SHADOW_VERY_SHORT")
+    patterns["shooting_star"] = talib.CDLSHOOTINGSTAR(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # HANGING_MAN: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyShort, RT.RealBody, "HANGING_MAN_BODY_SHORT_LB", "HANGING_MAN_BODY_SHORT")
+    apply_setting(CST.ShadowLong, RT.RealBody, "HANGING_MAN_SHADOW_LONG_LB", "HANGING_MAN_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "HANGING_MAN_SHADOW_VERY_SHORT_LB", "HANGING_MAN_SHADOW_VERY_SHORT")
+    apply_setting(CST.Near, RT.HighLow, "HANGING_MAN_NEAR_LB", "HANGING_MAN_NEAR")
+    patterns["hanging_man"] = talib.CDLHANGINGMAN(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # DOJI: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyDoji, RT.HighLow, "DOJI_BODY_LB", "DOJI_BODY")
+    patterns["doji"] = talib.CDLDOJI(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # LONG_LEGGED_DOJI: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyDoji, RT.HighLow, "DOJI_BODY_LB", "DOJI_BODY")
+    apply_setting(CST.ShadowLong, RT.RealBody, "LONG_LEGGED_DOJI_SHADOW_LONG_LB", "LONG_LEGGED_DOJI_SHADOW_LONG")
+    patterns["long_legged_doji"] = talib.CDLLONGLINE(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # DRAGONFLY_DOJI: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyDoji, RT.HighLow, "DOJI_BODY_LB", "DOJI_BODY")
+    apply_setting(CST.ShadowLong, RT.RealBody, "DRAGONFLY_DOJI_SHADOW_LONG_LB", "DRAGONFLY_DOJI_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "DRAGONFLY_DOJI_SHADOW_VERY_SHORT_LB", "DRAGONFLY_DOJI_SHADOW_VERY_SHORT")
+    patterns["dragonfly_doji"] = talib.CDLDRAGONFLYDOJI(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # GRAVESTONE_DOJI: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyDoji, RT.HighLow, "DOJI_BODY_LB", "DOJI_BODY")
+    apply_setting(CST.ShadowLong, RT.RealBody, "GRAVESTONE_DOJI_SHADOW_LONG_LB", "GRAVESTONE_DOJI_SHADOW_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "GRAVESTONE_DOJI_SHADOW_VERY_SHORT_LB", "GRAVESTONE_DOJI_SHADOW_VERY_SHORT")
+    patterns["gravestone_doji"] = talib.CDLGRAVESTONEDOJI(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # SPINNING_TOP: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyShort, RT.RealBody, "SPINNING_TOP_BODY_SHORT_LB", "SPINNING_TOP_BODY_SHORT")
+    patterns["spinning_top"] = talib.CDLSPINNINGTOP(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # MARUBOZU: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "MARUBOZU_BODY_LONG_LB", "MARUBOZU_BODY_LONG")
+    apply_setting(CST.ShadowVeryShort, RT.HighLow, "MARUBOZU_SHADOW_VERY_SHORT_LB", "MARUBOZU_SHADOW_VERY_SHORT")
+    patterns["marubozu"] = talib.CDLMARUBOZU(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # ENGULFING: apply settings → compute pattern and variants → restore defaults
     engulfing = talib.CDLENGULFING(o, h, l, c)
     patterns["engulfing"] = engulfing
     patterns["engulfing_bull"] = (engulfing > 0).astype(float)
     patterns["engulfing_bear"] = (engulfing < 0).astype(float)
+    restore_candle_default_settings(CST.AllCandleSettings)
 
+    # PIERCING_LINE: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "PIERCING_BODY_LONG_LB", "PIERCING_BODY_LONG")
     patterns["piercing_line"] = talib.CDLPIERCING(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
 
-    # Triple / others
+    # DARK_CLOUD_COVER: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "DARK_CLOUD_BODY_LONG_LB", "DARK_CLOUD_BODY_LONG")
+    patterns["dark_cloud_cover"] = talib.CDLDARKCLOUDCOVER(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # ABANDONED_BABY: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "ABANDONED_BABY_BODY_LONG_LB", "ABANDONED_BABY_BODY_LONG")
+    apply_setting(CST.BodyDoji, RT.HighLow, "ABANDONED_BABY_DOJI_LB", "ABANDONED_BABY_DOJI")
+    patterns["abandoned_baby"] = talib.CDLABANDONEDBABY(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # MORNING_STAR: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "MORNING_STAR_BODY_LONG_LB", "MORNING_STAR_BODY_LONG")
+    apply_setting(CST.BodyShort, RT.RealBody, "MORNING_STAR_BODY_SHORT_LB", "MORNING_STAR_BODY_SHORT")
+    patterns["morning_star"] = talib.CDLMORNINGSTAR(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # MORNING_DOJI_STAR: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "MORNING_DOJI_STAR_BODY_LONG_LB", "MORNING_DOJI_STAR_BODY_LONG")
+    apply_setting(CST.BodyDoji, RT.HighLow, "MORNING_DOJI_STAR_DOJI_LB", "MORNING_DOJI_STAR_DOJI")
+    patterns["morning_doji_star"] = talib.CDLMORNINGDOJISTAR(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # EVENING_STAR: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "EVENING_STAR_BODY_LONG_LB", "EVENING_STAR_BODY_LONG")
+    apply_setting(CST.BodyShort, RT.RealBody, "EVENING_STAR_BODY_SHORT_LB", "EVENING_STAR_BODY_SHORT")
     patterns["evening_star"] = talib.CDLEVENINGSTAR(o, h, l, c)
-    patterns["evening_doji_star"] = talib.CDLEVENINGDOJISTAR(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
 
-    # custom signal example (engulfing + shallow pullback)
+    # EVENING_DOJI_STAR: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "EVENING_DOJI_STAR_BODY_LONG_LB", "EVENING_DOJI_STAR_BODY_LONG")
+    apply_setting(CST.BodyDoji, RT.HighLow, "EVENING_DOJI_STAR_DOJI_LB", "EVENING_DOJI_STAR_DOJI")
+    patterns["evening_doji_star"] = talib.CDLEVENINGDOJISTAR(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # THREE_WHITE_SOLDIERS: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "THREE_WHITE_SOLDIERS_BODY_LONG_LB", "THREE_WHITE_SOLDIERS_BODY_LONG")
+    patterns["three_white_soldiers"] = talib.CDL3WHITESOLDIERS(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # THREE_BLACK_CROWS: apply settings → compute pattern → restore defaults
+    apply_setting(CST.BodyLong, RT.RealBody, "THREE_BLACK_CROWS_BODY_LONG_LB", "THREE_BLACK_CROWS_BODY_LONG")
+    patterns["three_black_crows"] = talib.CDL3BLACKCROWS(o, h, l, c)
+    restore_candle_default_settings(CST.AllCandleSettings)
+
+    # Custom signal: engulfing + shallow pullback
     try:
         engulf_bull = patterns["engulfing_bull"] > 0
         body_low = np.minimum(df["Open"], df["Close"])
@@ -186,9 +248,6 @@ def add_candle_patterns(df: pd.DataFrame, settings: Dict, settings_dir: Optional
     ]:
         if key not in patterns.columns:
             patterns[key] = 0.0
-
-    # restore defaults
-    restore_candle_default_settings(CST.AllCandleSettings)
 
     # Merge into original df (avoid overwriting existing columns)
     out = df.copy()

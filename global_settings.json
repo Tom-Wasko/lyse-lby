@@ -1,11 +1,12 @@
 {
   "market": "stocks",
-  "interval": "1week",
-  "week_start": "MON",
+  "interval": "1d",
+  "week_start": "WED",
   "vol_enabled": true,
   "vol_ratio_window": 20,
   "vol_ratio_threshold": 1.2000000000000002,
   "cmo_enabled": true,
+  "cmo_len": 6,
   "cmo_thres": -35,
   "cmo_thres_prev": -50
 }

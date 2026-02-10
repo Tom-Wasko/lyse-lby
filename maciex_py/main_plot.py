@@ -216,7 +216,9 @@ def create_chart_ui(
             return
 
         sma_periods = (sma1, sma2, sma3)
-        df_plot = add_indicators_fn(df_plot, settings, ema_periods=(ema1, ema2, ema3), sma_periods=sma_periods, tema_periods=(tema1, tema2, tema3), atr_len=atr_len)
+        # Get cmo_len from settings if not explicitly provided
+        cmo_len_to_use = cmo_len if cmo_len != 9 else settings.get("cmo_len", 5)
+        df_plot = add_indicators_fn(df_plot, settings, ema_periods=(ema1, ema2, ema3), sma_periods=sma_periods, tema_periods=(tema1, tema2, tema3), atr_len=atr_len, cmo_len=cmo_len_to_use)
         
         # Remove any duplicate columns that may have been added
         df_plot = df_plot.loc[:, ~df_plot.columns.duplicated(keep="first")]
@@ -232,11 +234,12 @@ def create_chart_ui(
         if show_atr and "ATR" in df_plot:
             df_plot["ATR_PCT"] = df_plot["ATR"] / df_plot["Close"]
 
-        if show_cmo and "CMO" not in df_plot and cmo_len != 9:
+        if show_cmo and "CMO" not in df_plot:
             delta = df_plot["Close"].diff()
             up = delta.clip(lower=0)
             down = -delta.clip(upper=0)
-            df_plot["CMO"] = 100 * (up.rolling(cmo_len).sum() - down.rolling(cmo_len).sum()) / (up.rolling(cmo_len).sum() + down.rolling(cmo_len).sum())
+            cmo_len_to_use = settings.get("cmo_len", 5)
+            df_plot["CMO"] = 100 * (up.rolling(cmo_len_to_use).sum() - down.rolling(cmo_len_to_use).sum()) / (up.rolling(cmo_len_to_use).sum() + down.rolling(cmo_len_to_use).sum())
 
         # add_candle_patterns returns the complete dataframe with patterns already merged
         df_plot = candle_patterns_fn(df_plot, settings)
@@ -447,21 +450,25 @@ def create_chart_ui(
         aroon_len=14,
         atr_len=14,
         show_cmo=True,
-        cmo_len=9,
+        cmo_len=None,
         lookback=1,
         window=100,
         wybrane_formacje=None,
         vol_confirmation=True,
         cmo_confirmation=True,
     ):
+        # Use cmo_len from settings if not explicitly provided
+        if cmo_len is None:
+            cmo_len = settings.get("cmo_len", 5)
+            
         df = get_df(symbol)
         if df is None:
             return
 
         df = df.tail(window + 500).copy()
 
-        patterns = candle_patterns_fn(df, settings)
-        df = pd.concat([df, patterns], axis=1).tail(window)
+        # `candle_patterns_fn` returns the full DataFrame with pattern columns merged
+        df = candle_patterns_fn(df, settings).tail(window)
 
         required_cols = ["VOL_SIGNIFICANT", "DOWNTREND_SHORT"]
         missing = [c for c in required_cols if c not in df.columns]
@@ -473,6 +480,7 @@ def create_chart_ui(
 
         pattern_cols = [k for k, v in wybrane_formacje.items() if v]
         if not pattern_cols:
+            print("❗ No patterns selected for scanning.")
             return
 
         recent = df.tail(lookback)
@@ -499,20 +507,30 @@ def create_chart_ui(
                 vol_ok = vol_val == 1
                 trend_ok = trend_val == 1
 
-                if vol_ok and trend_ok and vol_confirmation and cmo_confirmation:
-                    confirmed_patterns.append((idx, col, direction, signal))
-
-                if vol_ok and vol_confirmation and not cmo_confirmation:
-                    confirmed_patterns.append((idx, col, direction, signal))
-
-                if trend_ok and cmo_confirmation and not vol_confirmation:
+                # Check confirmation conditions
+                confirmed = False
+                
+                if vol_confirmation and cmo_confirmation:
+                    # Both required
+                    confirmed = vol_ok and trend_ok
+                elif vol_confirmation:
+                    # Only volume confirmation required
+                    confirmed = vol_ok
+                elif cmo_confirmation:
+                    # Only CMO confirmation required
+                    confirmed = trend_ok
+                else:
+                    # No confirmation required, accept all patterns
+                    confirmed = True
+                
+                if confirmed:
                     confirmed_patterns.append((idx, col, direction, signal))
 
         if not confirmed_patterns:
             return
 
         exchange = "NASDAQ" if symbol in NASDAQ_SYMBOLS else "NYSE"
-        interval_prefix = "W" if settings.get("interval") == "1week" or (settings.get("week_start") != "BASE" and settings.get("interval") == "1d") else "D"
+        interval_prefix = "W" if settings.get("interval") == "1week" else "D"
 
         print(f"\n📌 Symbol: {symbol}")
         print("Detected patterns:")
@@ -628,6 +646,8 @@ def create_chart_ui(
                     aroon_len=aroon_len_widget.value,
                     show_cmo=show_cmo_widget.value,
                     cmo_len=cmo_len_widget.value,
+                    cmo_confirmation=settings.get("cmo_enabled", True),
+                    vol_confirmation=settings.get("vol_enabled", True),
                     wybrane_formacje=patterns,
                 )
 
@@ -659,7 +679,7 @@ def create_chart_ui(
     aroon_len_widget = widgets.IntSlider(14, 5, 50, 1, description="Aroon len")
 
     show_cmo_widget = widgets.Checkbox(False, description="CMO")
-    cmo_len_widget = widgets.IntSlider(9, 1, 50, 1, description="CMO len")
+    cmo_len_widget = widgets.IntSlider(settings.get("cmo_len", 5), 1, 50, 1, description="CMO len")
 
     show_tema_widget = widgets.Checkbox(False, description="TEMA")
     tema1_widget = widgets.IntSlider(10, 2, 50, 1, description="TEMA 1")

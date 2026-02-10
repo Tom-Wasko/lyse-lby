@@ -679,9 +679,12 @@ def add_indicators(
     bb_len=20,
     bb_k=2,
     atr_len=14,
-    cmo_len=5,
+    cmo_len=None,
     vol_forecast_n=5,
 ):
+    # Use cmo_len from settings if not explicitly provided
+    if cmo_len is None:
+        cmo_len = settings.get("cmo_len", 5)
 
     import pandas as pd
     import numpy as np
@@ -772,17 +775,21 @@ def add_indicators(
     df["ATR_PCT"] = (df["ATR"] / df["Close"]).replace([np.inf, -np.inf], 0).fillna(0)
 
     # ===== Volume context =====
-    df["vol_sma20"] = safe_series(ta.sma(df["Volume"].astype(float), length=settings["vol_ratio_window"]))
+    vol_ratio_window = settings.get("vol_ratio_window", 20)
+    vol_ratio_threshold = settings.get("vol_ratio_threshold", 1.2)
+    df["vol_sma20"] = safe_series(ta.sma(df["Volume"].astype(float), length=vol_ratio_window))
     df["vol_ratio"] = (df["Volume"] / df["vol_sma20"]).replace([np.inf, -np.inf], 0).fillna(0)
-    df["VOL_SIGNIFICANT"] = (df["vol_ratio"] >= settings['vol_ratio_threshold']).astype(int)
+    df["VOL_SIGNIFICANT"] = (df["vol_ratio"] >= vol_ratio_threshold).astype(int)
 
     # ===== Short downtrend =====
     slope_period = 10
     if "EMA_20" in df and "EMA_50" in df:
         df["EMA20_SLOPE_N"] = df["EMA_20"].diff(slope_period).fillna(0)
+        cmo_thres = settings.get('cmo_thres', -35)
+        cmo_thres_prev = settings.get('cmo_thres_prev', -50)
         df["DOWNTREND_SHORT"] = (
-            (df["CMO"].shift(0) < settings['cmo_thres']) |
-            (df["CMO"].shift(1) < settings['cmo_thres_prev'])
+            (df["CMO"].shift(0) < cmo_thres) |
+            (df["CMO"].shift(1) < cmo_thres_prev)
         ).astype(int)
 
     # ===== Vol forecast =====
