@@ -1,6 +1,6 @@
 {
   "market": "stocks",
-  "interval": "1d",
+  "interval": "1week",
   "week_start": "MON",
   "vol_enabled": true,
   "vol_ratio_window": 20,
