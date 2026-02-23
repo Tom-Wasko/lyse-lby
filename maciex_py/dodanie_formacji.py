@@ -200,6 +200,7 @@ def add_candle_patterns(df: pd.DataFrame, settings: Dict, settings_dir: Optional
     # THREE_BLACK_CROWS: apply settings → compute pattern → restore defaults
     apply_setting(CST.BodyLong, RT.RealBody, "THREE_BLACK_CROWS_BODY_LONG_LB", "THREE_BLACK_CROWS_BODY_LONG")
     patterns["three_black_crows"] = talib.CDL3BLACKCROWS(o, h, l, c)
+    
     restore_candle_default_settings(CST.AllCandleSettings)
 
     # Custom signal: engulfing + shallow pullback

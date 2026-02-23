@@ -1,7 +1,7 @@
 {
   "market": "stocks",
-  "interval": "1d",
-  "week_start": "WED",
+  "interval": "1week",
+  "week_start": "MON",
   "vol_enabled": true,
   "vol_ratio_window": 20,
   "vol_ratio_threshold": 1.2000000000000002,

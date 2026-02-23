@@ -26,7 +26,7 @@ SYMBOLS_500 = ['MMM','AOS','ABT','ABBV','ACN','AMD','AES','AFL','A','APD','ABNB'
 # -----------------------
 os.makedirs(DATA_DIR, exist_ok=True)
 
-OVERWRITE_DAYS = 2
+OVERWRITE_DAYS = 3
 
 
 # NYSE calendar
