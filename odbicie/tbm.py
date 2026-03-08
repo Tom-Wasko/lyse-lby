@@ -26,7 +26,6 @@ def moving_triple_barrier_labels(
     Returns:
         DataFrame containing finished trades with returns and exit reasons.
     """
-    
     if entries_df is None or entries_df.empty:
         return pd.DataFrame()
         
