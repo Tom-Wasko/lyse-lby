@@ -7,6 +7,7 @@ def generate_odbicie_entries(
     market_data_daily: Dict[str, pd.DataFrame],
     threshold_pct: float = 0.05,
     max_setup_hold_bars: int = 15,
+    buy_on_close: bool = False,
 ) -> pd.DataFrame:
     """
     Takes valid signals and scans daily market data for an entry 
@@ -17,6 +18,8 @@ def generate_odbicie_entries(
         market_data_daily: Dict mapping symbol -> daily OHLCV DataFrame.
         threshold_pct: Percentage drop required to enter (e.g., 0.05 is 5%).
         max_setup_hold_bars: Maximum number of days to wait for the threshold drop before invalidating signal.
+        buy_on_close: If True, enters at the close of the first bar after the signal
+                      instead of waiting for the threshold drop.
         
     Returns:
         DataFrame containing executed entry trades.
@@ -54,28 +57,43 @@ def generate_odbicie_entries(
         
         if future_df.empty:
             continue
-            
-        target_entry_price = signal_close * (1 - threshold_pct)
-        
-        # Scan for entry trigger
-        for ts, row in future_df.iterrows():
-            if row['Low'] <= target_entry_price:
-                # Execution: we get filled at the target or lower if it gaps down
-                entry_price = min(row['Open'], target_entry_price)
-                
-                # Fetch volatility if available for downstream use
-                atr = row.get('ATR', np.nan)
-                
-                entries.append({
-                    'symbol': symbol,
-                    'signal_time': signal_time,
-                    'pattern': sig['pattern'],
-                    'entry_time': ts,
-                    'entry_price': entry_price,
-                    'signal_close': signal_close,
-                    'threshold_pct': threshold_pct,
-                    'entry_atr': atr
-                })
-                break  # Entry executed, stop scanning for this signal
+
+        if buy_on_close:
+            # Enter at the close of the first bar after the signal
+            ts = future_df.index[0]
+            row = future_df.iloc[0]
+            entries.append({
+                'symbol': symbol,
+                'signal_time': signal_time,
+                'pattern': sig['pattern'],
+                'entry_time': ts,
+                'entry_price': row['Close'],
+                'signal_close': signal_close,
+                'threshold_pct': threshold_pct,
+                'entry_atr': row.get('ATR', np.nan)
+            })
+        else:
+            target_entry_price = signal_close * (1 - threshold_pct)
+
+            # Scan for entry trigger
+            for ts, row in future_df.iterrows():
+                if row['Low'] <= target_entry_price:
+                    # Execution: we get filled at the target or lower if it gaps down
+                    entry_price = min(row['Open'], target_entry_price)
+
+                    # Fetch volatility if available for downstream use
+                    atr = row.get('ATR', np.nan)
+
+                    entries.append({
+                        'symbol': symbol,
+                        'signal_time': signal_time,
+                        'pattern': sig['pattern'],
+                        'entry_time': ts,
+                        'entry_price': entry_price,
+                        'signal_close': signal_close,
+                        'threshold_pct': threshold_pct,
+                        'entry_atr': atr
+                    })
+                    break  # Entry executed, stop scanning for this signal
                 
     return pd.DataFrame(entries)

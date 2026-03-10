@@ -1,7 +1,9 @@
 """
-Candlestick Trade Viewer — importable module.
+Trade Viewer — candlestick plot module.
+Works with both odbicie.py (threshold_pct) and odbicie_atr.py (atr_factor) entries.
+
 Usage in notebook:
-    from candlestick_cell import show_trade_viewer
+    from odbicie_dlugie.plot import show_trade_viewer
     show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb)
 """
 
@@ -21,11 +23,23 @@ def _val(p):
 
 def _simulate_barriers(entry_price, atr, highs, lows, tp_mult, sl_mult, ttp_mult,
                        max_holding_bars=15, active_trailing_sl=False,
-                       sl_trail_mult=2.0, max_loss_pct=1.0, time_decay_sl=False):
+                       sl_trail_mult=2.0, max_loss_pct=1.0, time_decay_sl=False,
+                       strategy_type='tbm'):
     vol_val = atr if (not np.isnan(atr) and atr != 0) else entry_price * 0.02
 
     sl_vals, tp_act_vals, ttp_vals = [], [], []
 
+    if strategy_type.lower() == 'simple':
+        sl_price = entry_price - (vol_val * sl_mult)
+        tp_price = entry_price + (vol_val * tp_mult)
+        
+        for i, (h, l) in enumerate(zip(highs, lows)):
+            sl_vals.append(sl_price)
+            tp_act_vals.append(tp_price)
+            ttp_vals.append(np.nan)
+        return sl_vals, tp_act_vals, ttp_vals, None
+
+    # TBM logic
     calculated_sl     = entry_price - vol_val * sl_mult
     hard_cap_sl       = entry_price * (1 - max_loss_pct)
     current_sl        = max(calculated_sl, hard_cap_sl)
@@ -77,27 +91,56 @@ def _simulate_barriers(entry_price, atr, highs, lows, tp_mult, sl_mult, ttp_mult
     return sl_vals, tp_act_vals, ttp_vals, activation_bar
 
 
+def _build_entry_info(row):
+    """
+    Build entry-method specific info lines.
+    Auto-detects whether the trade came from odbicie.py (threshold_pct)
+    or odbicie_atr.py (atr_factor).
+    """
+    lines = []
+    lines.append(('Entry ATR', f"{float(row['entry_atr']):.4f}"))
+
+    if 'atr_factor' in row.index:
+        # ATR-based entry (odbicie_atr.py)
+        lines.append(('ATR period',      str(int(row['atr_period']))))
+        lines.append(('ATR factor',      f"{float(row['atr_factor']):.1f}"))
+        lines.append(('Signal ATR',      f"{float(row['signal_atr']):.4f}"))
+        lines.append(('Pullback dist',   f"${float(row['pullback_distance']):.2f}"))
+        lines.append(('Pullback %',      f"{float(row['pullback_pct']):.2f}%"))
+    elif 'threshold_pct' in row.index:
+        # Percentage-based entry (odbicie.py)
+        lines.append(('Threshold',       f"{float(row['threshold_pct'])*100:.1f}%"))
+    else:
+        lines.append(('Entry method',    'unknown'))
+
+    return lines
+
+
 def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                       active_trailing_sl=False, sl_trail_mult=2.0,
-                      max_loss_pct=1.0, time_decay_sl=False, exit_on_close=False):
+                      max_loss_pct=1.0, time_decay_sl=False, exit_on_close=False,
+                      strategy_type="tbm"):
     """
     Display an interactive candlestick trade viewer widget.
     Parameters can be plain numbers or ipywidgets.
+    `strategy_type` can be "tbm" or "simple".
     """
-    # We no longer force 'Agg', let the native Jupyter backend handle it.
 
     tp_mult  = float(tpm)
     sl_mult  = float(slm)
     ttp_mult = float(ttpm)
     max_bars = int(mhb)
 
-    TBM_PARAMS = {
+    PARAMS_BOX = {
+        'Strategy':         strategy_type.upper(),
         'TP mult':          tp_mult,
         'SL mult':          sl_mult,
-        'TTP trail mult':   ttp_mult,
         'Max holding bars': max_bars,
         'Exit on close':    exit_on_close,
     }
+    
+    if strategy_type.lower() == 'tbm':
+        PARAMS_BOX['TTP trail mult'] = ttp_mult
 
     # ── Pre-compute trades ──
     trades_data = []
@@ -144,7 +187,7 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
             tp_mult, sl_mult, ttp_mult,
             max_holding_bars=max_bars, active_trailing_sl=active_trailing_sl,
             sl_trail_mult=sl_trail_mult, max_loss_pct=max_loss_pct,
-            time_decay_sl=time_decay_sl,
+            time_decay_sl=time_decay_sl, strategy_type=strategy_type
         )
 
         trades_data.append({
@@ -158,11 +201,22 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
         print("Brak transakcji do wyświetlenia.")
         return
 
+    # Extract all unique exit reasons for the filter dropdown
+    unique_reasons = sorted(list({d['row']['exit_reason'] for d in trades_data if 'exit_reason' in d['row']}))
+    reasons_options = ['All'] + unique_reasons
+
     # ── Widget ──
-    state = {'idx': 0}
+    state = {'idx': 0, 'filtered_indices': list(range(len(trades_data)))}
     out = widgets.Output()
 
-    def plot_trade(index):
+    def plot_trade():
+        if not state['filtered_indices']:
+            with out:
+                clear_output(wait=True)
+                print("Brak transakcji dla wybranego filtru.")
+            return
+            
+        index = state['filtered_indices'][state['idx']]
         with out:
             clear_output(wait=True)
             try:
@@ -220,19 +274,23 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                     if not np.isnan(v):
                         ttp_xs.append(xi); ttp_ys.append(v)
 
+                is_tbm = strategy_type.lower() == 'tbm'
+
                 if sl_xs:
+                    label = 'Trailing SL' if is_tbm else 'Stop Loss'
                     ax.step(sl_xs, sl_ys, where='post', color='#ef5350', lw=1.4,
-                            ls='--', label='Trailing SL', zorder=4)
+                            ls='--', label=label, zorder=4)
                 if tp_xs:
+                    label = 'TP activation' if is_tbm else 'Take Profit'
                     ax.step(tp_xs, tp_ys, where='post', color='#4caf50', lw=1.4,
-                            ls='--', label='TP activation', zorder=4)
-                if ttp_xs:
+                            ls='--', label=label, zorder=4)
+                if ttp_xs and is_tbm:
                     ax.step(ttp_xs, ttp_ys, where='post', color='#ff9800', lw=1.8,
                             ls='-', label='Trailing TP stop', zorder=4)
 
-                # TP activation marker
+                # TP activation marker (TBM only)
                 act_bar = data['activation_bar']
-                if act_bar is not None and act_bar < len(future):
+                if act_bar is not None and act_bar < len(future) and is_tbm:
                     act_x = x_for(future.index[act_bar])
                     act_y = data['tp_act_vals'][act_bar]
                     ax.scatter(act_x, act_y, color='#ff9800', s=250, marker='P',
@@ -261,19 +319,21 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                 ax.set_xticklabels([dates[i].strftime('%Y-%m-%d') for i in ticks],
                                    rotation=45, ha='right', fontsize=8)
 
-                # TBM box
-                ptxt = '\n'.join(f'{k}: {v}' for k, v in TBM_PARAMS.items())
-                ax.text(0.01, 0.99, f'TBM Parameters\n{ptxt}',
+                # Params box
+                ptxt = '\n'.join(f'{k}: {v}' for k, v in PARAMS_BOX.items())
+                ax.text(0.01, 0.99, f'Simulation Parameters\n{ptxt}',
                         transform=ax.transAxes, fontsize=9, va='top', fontfamily='monospace',
                         bbox=dict(boxstyle='round,pad=0.5', fc='#e3f2fd', alpha=0.85, ec='#90caf9'))
 
-                ax.set_title(f'[{symbol}]  Trade {index+1} / {len(trades_data)}',
+                view_idx = state['idx'] + 1
+                total_filtered = len(state['filtered_indices'])
+                ax.set_title(f'[{symbol}]  Trade {view_idx} / {total_filtered}',
                              fontsize=13, fontweight='bold')
                 ax.set_ylabel('Cena ($)')
                 ax.grid(True, alpha=0.2)
                 ax.legend(loc='lower right', fontsize=7.5, framealpha=0.9, ncol=2)
 
-                # Info panel
+                # ── Info panel ──
                 ax_info.axis('off')
                 ret = float(row['return_pct'])
                 rc  = '#26a69a' if ret > 0 else '#ef5350'
@@ -287,8 +347,12 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                     ('',             ''),
                     ('Entry time',   str(entry_time.date())),
                     ('Entry price',  f"${entry_price:.2f}"),
-                    ('Entry ATR',    f"{float(row['entry_atr']):.4f}"),
-                    ('Threshold',    f"{float(row['threshold_pct'])*100:.1f}%"),
+                ]
+
+                # Auto-detect entry method and append relevant info
+                info.extend(_build_entry_info(row))
+
+                info.extend([
                     ('',             ''),
                     ('Exit time',    str(exit_time.date())),
                     ('Exit price',   f"${exit_price:.2f}"),
@@ -297,7 +361,7 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                     ('',             ''),
                     ('Ideal entry',  f"${opt_price:.2f}"),
                     ('Ideal date',   str(opt_idx.date()) if hasattr(opt_idx, 'date') else str(opt_idx)),
-                ]
+                ])
 
                 ax_info.text(0.05, 0.97, 'Trade Information', fontsize=12, fontweight='bold',
                              transform=ax_info.transAxes, va='top')
@@ -324,19 +388,42 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
                 import traceback
                 traceback.print_exc()
 
+    def update_filter(change):
+        selected = change['new']
+        if selected == 'All':
+            state['filtered_indices'] = list(range(len(trades_data)))
+        else:
+            state['filtered_indices'] = [
+                i for i, d in enumerate(trades_data) 
+                if d['row'].get('exit_reason') == selected
+            ]
+        state['idx'] = 0
+        plot_trade()
+
     def on_next(b):
-        state['idx'] = (state['idx'] + 1) % len(trades_data)
-        plot_trade(state['idx'])
+        if not state['filtered_indices']: return
+        state['idx'] = (state['idx'] + 1) % len(state['filtered_indices'])
+        plot_trade()
 
     def on_prev(b):
-        state['idx'] = (state['idx'] - 1) % len(trades_data)
-        plot_trade(state['idx'])
+        if not state['filtered_indices']: return
+        state['idx'] = (state['idx'] - 1) % len(state['filtered_indices'])
+        plot_trade()
 
     prev_btn = widgets.Button(description='⬅️ Poprzednia', button_style='warning')
     next_btn = widgets.Button(description='Następna ➡️',   button_style='info')
+    
+    filter_dropdown = widgets.Dropdown(
+        options=reasons_options,
+        value='All',
+        description='Exit Reason:',
+        style={'description_width': 'initial'}
+    )
+    filter_dropdown.observe(update_filter, names='value')
+
     prev_btn.on_click(on_prev)
     next_btn.on_click(on_next)
 
-    display(widgets.HBox([prev_btn, next_btn]))
+    display(widgets.HBox([filter_dropdown, prev_btn, next_btn]))
     display(out)
-    plot_trade(state['idx'])
+    plot_trade()
