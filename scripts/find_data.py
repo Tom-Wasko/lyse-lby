@@ -6,19 +6,19 @@ from tqdm import tqdm
 import numpy as np
 
 # widgety do wyboru ustawień (interwal, filtry)
-from maciex_py.poczatek_ustawienia import create_settings_ui
+from core.poczatek_ustawienia import create_settings_ui
 
 # kontrola taliba
-from maciex_py.kontrola_taliba import create_talib_control
+from core.kontrola_taliba import create_talib_control
 
 # zaladowanie df do pamieci
-from maciex_py.ladowanie_danych import create_stock_dfs, add_indicators
+from core.ladowanie_danych import create_stock_dfs, add_indicators
 
 # dodanie formacji
-from maciex_py.dodanie_formacji import add_candle_patterns
+from core.dodanie_formacji import add_candle_patterns
 
 # giga plot
-from maciex_py.main_plot import create_chart_ui
+from core.main_plot import create_chart_ui
 
 
 # Indicator functions from pandas-ta

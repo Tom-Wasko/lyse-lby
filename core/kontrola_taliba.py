@@ -33,22 +33,27 @@ def create_talib_control(
     to TA-Lib internal candle settings (via `_ta_set_candle_settings`).
     """
 
-    # Derived settings file if not provided
+    # Always use the merged candle_settings.json; settings_file arg is kept for
+    # backwards compatibility but ignored when None.
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    _merged_path = os.path.join(project_root, "candle_settings.json")
     if settings_file is None:
-        settings_file = (
-            "candle_settings_1week.json"
-            if settings.get("interval") == "1week"
-            else "candle_settings_1d.json"
-        )
+        settings_file = _merged_path
+    interval = settings.get("interval", "1d")
 
-    # If default_params not provided, try to load from top-level `candle_settings.json`
+    # If default_params not provided, load from merged candle_settings.json
     if default_params is None:
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-        candle_path = os.path.join(project_root, "candle_settings.json")
-        if os.path.exists(candle_path):
+        if os.path.exists(_merged_path):
             try:
-                with open(candle_path, "r") as f:
-                    default_params = json.load(f)
+                with open(_merged_path, "r") as f:
+                    _all = json.load(f)
+                # Support both merged {"1d": {...}} and legacy flat format
+                if interval in _all:
+                    default_params = _all[interval]
+                elif any(k.startswith("HAMMER") for k in _all):
+                    default_params = _all  # legacy flat
+                else:
+                    default_params = {}
             except Exception:
                 default_params = {}
         else:
@@ -78,14 +83,15 @@ def create_talib_control(
             if key in SLIDERS:
                 SLIDERS[key].value = default_value
 
-        # 3. Save all default parameters
-        with open(settings_file, "w") as f:
-            json.dump(default_params, f, indent=4)
+        # 3. Save defaults back into the merged file under the correct interval key
+        _save_to_merged(settings_file, interval, default_params)
 
     def load_saved_settings():
         if os.path.exists(settings_file):
             with open(settings_file, "r") as f:
-                data = json.load(f)
+                _raw = json.load(f)
+            # Support merged format
+            data = _raw.get(interval, _raw) if not any(k.startswith("HAMMER") for k in _raw) else _raw
             for key, value in data.items():
                 WIDGET_REGISTRY[key] = value
         else:
@@ -93,11 +99,23 @@ def create_talib_control(
             for k, v in default_params.items():
                 WIDGET_REGISTRY.setdefault(k, v)
 
+    def _save_to_merged(path, ivl, data):
+        """Write `data` into `path` under key `ivl`, preserving other intervals."""
+        existing = {}
+        if os.path.exists(path):
+            try:
+                with open(path, "r") as fh:
+                    existing = json.load(fh)
+            except Exception:
+                pass
+        existing[ivl] = data
+        with open(path, "w") as fh:
+            json.dump(existing, fh, indent=4)
+
     def save_settings_to_file(_=None):
         apply_all_settings()
         data = {key: get_value(key) for key in WIDGET_REGISTRY}
-        with open(settings_file, "w") as f:
-            json.dump(data, f, indent=4)
+        _save_to_merged(settings_file, interval, data)
 
     def get_value(key):
         v = WIDGET_REGISTRY.get(key, default_params.get(key))

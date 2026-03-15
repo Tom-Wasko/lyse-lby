@@ -2,8 +2,8 @@
 
 Function: add_candle_patterns(df, settings, settings_dir=None)
 
-- Loads `candle_settings_1d.json` or `candle_settings_1week.json` depending on
-  `settings['interval']` (defaults to 1d if missing).
+- Loads `candle_settings.json` and selects the sub-key matching
+  `settings['interval']` ("1d" or "1week"; defaults to "1d" if missing).
 - Applies TA-Lib internal candle params before computing CDL pattern functions.
 - Restores TA-Lib defaults after computation.
 
@@ -46,15 +46,19 @@ def add_candle_patterns(df: pd.DataFrame, settings: Dict, settings_dir: Optional
         settings_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
     interval = settings.get("interval", "1d")
-    fname = "candle_settings_1week.json" if interval == "1week" else "candle_settings_1d.json"
-    settings_path = os.path.join(settings_dir, fname)
+    settings_path = os.path.join(settings_dir, "candle_settings.json")
 
-    # load params if available
+    # load params for the correct interval
     params = {}
     if os.path.exists(settings_path):
         try:
             with open(settings_path, "r") as f:
-                params = json.load(f)
+                all_settings = json.load(f)
+            # Support both merged format {"1d": {...}} and legacy flat format
+            if interval in all_settings:
+                params = all_settings[interval]
+            elif any(k.startswith("HAMMER") for k in all_settings):
+                params = all_settings  # legacy flat file
         except Exception:
             params = {}
 
