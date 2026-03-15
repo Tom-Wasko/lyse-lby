@@ -26,16 +26,17 @@ def _compute_trade_metrics(trds: pd.DataFrame, entries_df: pd.DataFrame) -> dict
     avg_hold_bars = trds['hold_bars'].mean()
     std_hold_bars = trds['hold_bars'].std()
     avg_setup_bars = entries_df['setup_bars'].mean() if 'setup_bars' in entries_df.columns else np.nan
-    std_setup_bars = entries_df['setup_bars'].std() if 'setup_bars' in entries_df.columns else np.nan
+    #std_setup_bars = entries_df['setup_bars'].std() if 'setup_bars' in entries_df.columns else np.nan
+    return_per_bar = (trds['return_pct'] / trds['hold_bars']).mean() if not trds.empty else 0
     return {
         'trades': len(trds),
         'win_rate': win_rate,
         'avg_return': avg_return,
         'avg_hold_bars': avg_hold_bars,
-        'std_hold_bars': std_hold_bars,
+        #'std_hold_bars': std_hold_bars,
         'avg_setup_bars': avg_setup_bars,
-        'std_setup_bars': std_setup_bars,
-        'return_per_bar': avg_return / avg_hold_bars if avg_hold_bars > 0 else 0,
+        #'std_setup_bars': std_setup_bars,
+        'return_per_bar': return_per_bar,
     }
 
 
@@ -252,7 +253,7 @@ def optimize_simple_sl_tp(
                 'win_rate': (trds['return_pct'] > 0).mean() * 100,
                 'avg_return': trds['return_pct'].mean(),
                 'avg_hold_bars': avg_hold_bars,
-                'return_per_bar': trds['return_pct'].mean() / avg_hold_bars if avg_hold_bars > 0 else 0,
+                'return_per_bar': (trds['return_pct'] / trds['hold_bars']).mean() if not trds.empty else 0,
             })
 
     df_res = pd.DataFrame(results)
