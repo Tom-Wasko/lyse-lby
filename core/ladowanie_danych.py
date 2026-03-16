@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 import pandas_ta as ta
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 # Opis: Definicja listy symboli (tickery) do analizy.
 
@@ -489,144 +489,16 @@ SYMBOLS_500 = [
  'ZBH',
  'ZTS']
 
-CRYPTO_TOP_50 = [
-    "BTC-USD",   # Bitcoin
-    "ETH-USD",   # Ethereum
-    "USDT-USD",  # Tether
-    "BNB-USD",   # Binance Coin
-    "SOL-USD",   # Solana
-    "USDC-USD",  # USD Coin
-    "XRP-USD",   # XRP
-    "TON11419-USD",  # Toncoin (Yahoo uses this weird symbol)
-    "DOGE-USD",  # Dogecoin
-    "ADA-USD",   # Cardano
-    "AVAX-USD",  # Avalanche
-    "SHIB-USD",  # Shiba Inu
-    "TRX-USD",   # TRON
-    "DOT-USD",   # Polkadot
-    "LINK-USD",  # Chainlink
-    "MATIC-USD", # Polygon
-    "BCH-USD",   # Bitcoin Cash
-    "ICP-USD",   # Internet Computer
-    "LTC-USD",   # Litecoin
-    "UNI7083-USD", # Uniswap (Yahoo-specific code)
-    "ATOM-USD",  # Cosmos
-    "ETC-USD",   # Ethereum Classic
-    "XLM-USD",   # Stellar
-    "FIL-USD",   # Filecoin
-    "APT-USD",   # Aptos
-    "HBAR-USD",  # Hedera
-    "NEAR-USD",  # Near Protocol
-    "OP-USD",    # Optimism
-    #"IMX-USD",   # Immutable
-    "INJ-USD",   # Injective
-    "ARB-USD",   # Arbitrum
-    "RNDR-USD",  # Render
-    #"GRT-USD",   # The Graph
-    "AAVE-USD",  # Aave
-    "FLOW-USD",  # Flow
-    "MKR-USD",   # Maker
-    "SAND-USD",  # The Sandbox
-    "THETA-USD", # Theta
-    "KAS-USD",   # Kaspa
-    "EGLD-USD",  # MultiversX
-    "AXS-USD",   # Axie Infinity
-    "XTZ-USD",   # Tezos
-    "NEO-USD",   # Neo
-    "MINA-USD",  # Mina
-    "SNX-USD",   # Synthetix
-    "CRV-USD",   # Curve
-    "CHZ-USD",   # Chiliz
-    "DYDX-USD",  # dYdX
-]
 
-COMMODITY_SYMBOLS = [
+import os
+market_symbols: Dict[str, List[str]] = {}
 
-    # =========================
-    # 🥇 PRECIOUS METALS
-    # =========================
-    "GC=F",    # Gold
-    "SI=F",    # Silver
-    "PL=F",    # Platinum
-    "PA=F",    # Palladium
+for kuwaa in ['sp500', 'crypto', 'europe']:
+    kuwa = os.path.join("C:\\Users\\stunt\\lyse-lby\\all_data", f"data_{kuwaa}_1d")
+    csv_files = [f.replace('.csv', '') for f in os.listdir(kuwa) if f.endswith('.csv')]
+    market_symbols[kuwaa] = csv_files
 
-    # =========================
-    # 🏗 INDUSTRIAL / BASE METALS
-    # =========================
-    "HG=F",    # Copper
-    "ALI=F",   # Aluminum (unstable)
-    "ZNC=F",   # Zinc (unstable)
-    "NICKEL=F",# Nickel (very unstable)
-    "TIN=F",   # Tin (rarely works)
-
-    # =========================
-    # 🛢 ENERGY
-    # =========================
-    "CL=F",    # Crude Oil WTI
-    "BZ=F",    # Brent Crude
-    "NG=F",    # Natural Gas
-    "HO=F",    # Heating Oil
-    "RB=F",    # Gasoline RBOB
-    "MGC=F",   # Micro Gold
-    "QG=F",    # Mini Natural Gas
-
-    # =========================
-    # 🌾 GRAINS
-    # =========================
-    "ZC=F",    # Corn
-    "ZW=F",    # Wheat
-    "ZS=F",    # Soybeans
-    "ZM=F",    # Soybean Meal
-    "ZL=F",    # Soybean Oil
-    "ZR=F",    # Rough Rice
-    "ZO=F",    # Oats
-
-    # =========================
-    # ☕ SOFT COMMODITIES
-    # =========================
-    "KC=F",    # Coffee
-    "SB=F",    # Sugar
-    "CT=F",    # Cotton
-    "CC=F",    # Cocoa
-    "OJ=F",    # Orange Juice
-    "LB=F",    # Lumber
-
-    # =========================
-    # 🐄 LIVESTOCK
-    # =========================
-    "LE=F",    # Live Cattle
-    "GF=F",    # Feeder Cattle
-    "HE=F",    # Lean Hogs
-
-    # =========================
-    # 🧪 CHEMICALS / FERTILIZERS (SPOTTY)
-    # =========================
-    "UREA=F",  # Urea (often empty)
-    "DAPHOS=F",# DAP Fertilizer (rare)
-
-    # =========================
-    # 🌍 MACRO / COMMODITY INDICES
-    # =========================
-    "^BCOM",   # Bloomberg Commodity Index
-    "^CRB",    # CRB Index
-
-    # =========================
-    # 📦 COMMODITY ETF PROXIES (VERY RELIABLE)
-    # =========================
-    "GLD",     # Gold ETF
-    "SLV",     # Silver ETF
-    "USO",     # Oil ETF
-    "UNG",     # Natural Gas ETF
-    "DBC",     # Broad commodities
-    "DBA",     # Agriculture basket
-    "DBB",     # Base metals basket
-    "WOOD",    # Timber
-    "CORN",    # Corn ETF
-    "WEAT",    # Wheat ETF
-    "SOYB",    # Soybeans ETF
-
-]
-
+'''
 def load_symbol_data(symbol: str, data_dir: str, window: Optional[int] = None) -> Optional[pd.DataFrame]:
     """Load CSV for a symbol from data_dir and return cleaned daily DataFrame.
 
@@ -645,7 +517,8 @@ def load_symbol_data(symbol: str, data_dir: str, window: Optional[int] = None) -
     REQUIRED = ["Date", "Open", "High", "Low", "Close", "Volume"]
     if not all(col in df.columns for col in REQUIRED):
         return None
-
+    
+    df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
     df = df[REQUIRED].copy()
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df.set_index("Date", inplace=True)
@@ -662,7 +535,7 @@ def load_symbol_data(symbol: str, data_dir: str, window: Optional[int] = None) -
         return df.tail(window)
     return df
 
-
+'''
 
 def add_indicators(
     df,
@@ -975,8 +848,7 @@ def daily_to_weekly(df, week_start="MON"):
 
 def create_stock_dfs(
     settings: Dict,
-    symbols: Optional[List[str]] = None,
-    data_dir: Optional[str] = None,
+    market_symbols: Dict[str, List[str]] = market_symbols,
     window: Optional[int] = None,
 ) -> Tuple[Dict[str, pd.DataFrame], Dict[str, pd.DataFrame]]:
     """
@@ -984,47 +856,109 @@ def create_stock_dfs(
 
     Returns (dfs_1d, dfs_1w) where each is a dict mapping symbol -> DataFrame.
     """
-    # determine symbols list
-    if symbols is None:
-        market = settings.get("market", "stocks")
-        if market == "crypto":
-            symbols = CRYPTO_TOP_50.copy()
-        elif market == "commodities":
-            symbols = COMMODITY_SYMBOLS.copy()
-        else:
-            symbols = SYMBOLS_500.copy()
-
-    # data dir default
-    if data_dir is None:
-        data_dir = os.path.join("all_data", f"data_{settings.get('market','stocks')}_1d")
-
+    import warnings
     dfs_1d: Dict[str, pd.DataFrame] = {}
     dfs_1w: Dict[str, pd.DataFrame] = {}
 
-    for symbol in tqdm(list(symbols), desc="Loading data"):
-        df_daily = load_symbol_data(symbol, data_dir, window=window)
+    # determine market
+    market = settings.get("market", "sp500")
+
+
+    symbols = market_symbols[market].copy()
+
+    data_dir = os.path.join(r"C:\Users\stunt\lyse-lby\all_data", f"data_{market}_1d")
+
+    for symbol in tqdm(symbols, desc="Loading data"):
+        df_daily = load_symbol_data_safe(symbol, data_dir, window=window)
         if df_daily is None:
+            warnings.warn(f"Skipping symbol '{symbol}' due to missing or invalid CSV.")
             continue
 
         # add indicators to daily
-        df_daily = add_indicators(df_daily.copy(), settings=settings)
+        try:
+            df_daily = add_indicators(df_daily.copy(), settings=settings)
+        except Exception as e:
+            warnings.warn(f"Error adding indicators for '{symbol}': {e}")
+            continue
+
         dfs_1d[symbol] = df_daily
 
-        # create weekly from daily using week_start setting
+        # create weekly DataFrame
         week_start = settings.get("week_start", "BASE")
-        if week_start != "BASE":
-            df_week = daily_to_weekly(df_daily, week_start=week_start)
-        else:
-            # default weekly resample: week ending on Sunday
-            df_week = df_daily.resample("W").agg({
-                "Open": "first",
-                "High": "max",
-                "Low": "min",
-                "Close": "last",
-                "Volume": "sum",
-            }).dropna()
-
-        df_week = add_indicators(df_week.copy(), settings=settings)
-        dfs_1w[symbol] = df_week
+        try:
+            if week_start != "BASE":
+                df_week = daily_to_weekly(df_daily, week_start=week_start)
+            else:
+                # Default weekly resample: week ending on Sunday
+                df_week = df_daily.resample("W").agg({
+                    "Open": "first",
+                    "High": "max",
+                    "Low": "min",
+                    "Close": "last",
+                    "Volume": "sum",
+                }).dropna()
+            df_week = add_indicators(df_week.copy(), settings=settings)
+            dfs_1w[symbol] = df_week
+        except Exception as e:
+            warnings.warn(f"Error creating weekly DataFrame for '{symbol}': {e}")
+            continue
 
     return dfs_1d, dfs_1w
+
+
+import warnings
+
+def load_symbol_data_safe(symbol: str, data_dir: str, window: Optional[int] = None) -> Optional[pd.DataFrame]:
+    """
+    Load CSV for a symbol safely. Uses Adj Close if available.
+    Handles CSVs with extra second row (like crypto exports from Yahoo).
+    Returns None if file missing or invalid.
+    """
+    path = os.path.join(data_dir, f"{symbol}.csv")
+    if not os.path.isfile(path):
+        warnings.warn(f"CSV file not found: {path}")
+        return None
+
+    try:
+        # read first row as header
+        df = pd.read_csv(path, header=0)
+        # check if second row is a repeated header/symbol row
+        second_row = df.iloc[0]
+        if all(str(val).strip() == col for col, val in zip(df.columns, second_row)):
+            df = df[1:]  # drop second header row
+    except Exception as e:
+        warnings.warn(f"Error reading CSV for '{symbol}': {e}")
+        return None
+
+    # normalize datetime column
+    if "Datetime" in df.columns and "Date" not in df.columns:
+        df.rename(columns={"Datetime": "Date"}, inplace=True)
+
+    # required columns
+    REQUIRED = ["Date", "Open", "High", "Low", "Close", "Volume"]
+    if not all(col in df.columns for col in REQUIRED):
+        warnings.warn(f"Missing required columns in '{symbol}': {df.columns.tolist()}")
+        return None
+
+    # replace Close with Adj Close if available
+    if "Adj Close" in df.columns:
+        df["Close"] = pd.to_numeric(df["Adj Close"], errors="coerce")
+
+    # keep only required columns
+    df = df[REQUIRED].copy()
+
+    # convert types
+    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+    df.set_index("Date", inplace=True)
+    df.sort_index(inplace=True)
+    df["Weekday"] = df.index.day_name()
+
+    for col in ["Open", "High", "Low", "Close"]:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df["Volume"] = pd.to_numeric(df["Volume"], errors="coerce").fillna(0)
+    df.dropna(subset=["Open", "High", "Low", "Close"], inplace=True)
+
+    if window is not None:
+        df = df.tail(window)
+
+    return df

@@ -6,7 +6,7 @@ import ipywidgets as widgets
 from IPython.display import display, clear_output
 
 
-def create_settings_ui(settings_path: str = "global_settings.json") -> Tuple[widgets.VBox, Dict[str, Any]]:
+def create_settings_ui(settings_path: str = "C:\\Users\\stunt\\lyse-lby\\global_settings.json") -> Tuple[widgets.VBox, Dict[str, Any]]:
     """
     Create and return the settings UI panel and the settings dictionary.
     
@@ -29,9 +29,9 @@ def create_settings_ui(settings_path: str = "global_settings.json") -> Tuple[wid
 
     market_widget = widgets.ToggleButtons(
         options=[
-            ("Krypto", "crypto"),
-            ("Spółki", "stocks"),
-            ("Surowce", "commodities"),
+            ("krypto", "crypto"),
+            ("ameryczka", "sp500"),
+            ("europa", "europe"),
         ],
         description="Market:",
         button_style=""
@@ -170,17 +170,51 @@ def create_settings_ui(settings_path: str = "global_settings.json") -> Tuple[wid
         with open(settings_path, "r") as f:
             settings = json.load(f)
 
-        # Use `.get()` with the existing widget default to avoid KeyError
-        market_widget.value = settings.get("market", market_widget.value)
-        interval_widget.value = settings.get("interval", interval_widget.value)
-        week_start_widget.value = settings.get("week_start", week_start_widget.value)
-        vol_enabled_widget.value = settings.get("vol_enabled", vol_enabled_widget.value)
-        vol_ratio_window_widget.value = settings.get("vol_ratio_window", vol_ratio_window_widget.value)
-        vol_ratio_threshold_widget.value = settings.get("vol_ratio_threshold", vol_ratio_threshold_widget.value)
-        cmo_enabled_widget.value = settings.get("cmo_enabled", cmo_enabled_widget.value)
-        cmo_len_widget.value = settings.get("cmo_len", cmo_len_widget.value)
-        cmo_thres_widget.value = settings.get("cmo_thres", cmo_thres_widget.value)
-        cmo_thres_prev_widget.value = settings.get("cmo_thres_prev", cmo_thres_prev_widget.value)
+        def _option_values(widget):
+            options = widget.options
+            if isinstance(options, dict):
+                return set(options.values())
+            values = []
+            for opt in options:
+                if isinstance(opt, (list, tuple)) and len(opt) == 2:
+                    values.append(opt[1])
+                else:
+                    values.append(opt)
+            return set(values)
+
+        def _safe_set(widget, value, legacy_map=None):
+            if value is None:
+                return
+
+            # Map legacy values if provided
+            if legacy_map and value in legacy_map:
+                value = legacy_map[value]
+
+            try:
+                if hasattr(widget, "options"):
+                    valid = _option_values(widget)
+                    if value not in valid:
+                        return
+                if hasattr(widget, "min") and hasattr(widget, "max") and isinstance(value, (int, float)):
+                    if value < widget.min:
+                        value = widget.min
+                    elif value > widget.max:
+                        value = widget.max
+                widget.value = value
+            except Exception:
+                return
+
+        # Use defaults when saved values are missing/invalid
+        _safe_set(market_widget, settings.get("market", market_widget.value), legacy_map={"stocks": "sp500"})
+        _safe_set(interval_widget, settings.get("interval", interval_widget.value))
+        _safe_set(week_start_widget, settings.get("week_start", week_start_widget.value))
+        _safe_set(vol_enabled_widget, settings.get("vol_enabled", vol_enabled_widget.value))
+        _safe_set(vol_ratio_window_widget, settings.get("vol_ratio_window", vol_ratio_window_widget.value))
+        _safe_set(vol_ratio_threshold_widget, settings.get("vol_ratio_threshold", vol_ratio_threshold_widget.value))
+        _safe_set(cmo_enabled_widget, settings.get("cmo_enabled", cmo_enabled_widget.value))
+        _safe_set(cmo_len_widget, settings.get("cmo_len", cmo_len_widget.value))
+        _safe_set(cmo_thres_widget, settings.get("cmo_thres", cmo_thres_widget.value))
+        _safe_set(cmo_thres_prev_widget, settings.get("cmo_thres_prev", cmo_thres_prev_widget.value))
 
     # Show/hide week_start depending on interval selection
     def update_week_start_visibility(change=None):
