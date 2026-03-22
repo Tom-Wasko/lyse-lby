@@ -1,0 +1,71 @@
+{
+  "data_settings": {
+    "market": "sp500",
+    "interval": "1week",
+    "vol_enabled": true,
+    "vol_ratio_window": 20,
+    "vol_ratio_threshold": 1.2,
+    "cmo_enabled": true,
+    "cmo_len": 6,
+    "cmo_thres": -35,
+    "cmo_thres_prev": -50
+  },
+  "strategies": {
+    "base": {
+      "entry_settings": {
+        "threshold_pct": 0.18,
+        "max_setup_hold_bars": 7
+      },
+      "tbm_settings": {
+        "tpm": 0.3,
+        "slm": 1.7,
+        "ttpm": 0.15,
+        "mhb": 8,
+        "early_bailout": false,
+        "time_decay_sl": true,
+        "active_trail_sl": true,
+        "sl_trail_mult": 0.5,
+        "max_loss_pct": 1.0,
+        "exit_on_close": true
+      }
+    },
+    "atr": {
+      "entry_settings": {
+        "atr_period": 15,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 10
+      },
+      "tbm_settings": {
+        "tpm": 1.3,
+        "slm": 1.75,
+        "ttpm": 0.18,
+        "mhb": 7,
+        "early_bailout": false,
+        "time_decay_sl": true,
+        "active_trail_sl": true,
+        "sl_trail_mult": 2.0,
+        "max_loss_pct": 1.0,
+        "exit_on_close": true
+      }
+    },
+    "bb": {
+      "entry_settings": {
+        "bb_period": 10,
+        "bb_std": 3,
+        "max_setup_hold_bars": 10
+      },
+      "tbm_settings": {
+        "tpm": 1,
+        "slm": 2,
+        "ttpm": 0.1,
+        "mhb": 16,
+        "early_bailout": false,
+        "time_decay_sl": true,
+        "active_trail_sl": true,
+        "sl_trail_mult": 3.5,
+        "max_loss_pct": 1.0,
+        "exit_on_close": true
+      }
+    }
+  }
+}
