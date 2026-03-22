@@ -59,6 +59,7 @@ def _run_optimization_loop(
     exit_on_close: bool = False,
     min_trades: int = 10,
     tqdm_desc: str = "Optymalizacja",
+    show_progress: bool = True,
 ) -> pd.DataFrame:
     """
     Generic optimization loop shared by all entry-strategy optimizers.
@@ -79,7 +80,7 @@ def _run_optimization_loop(
     """
     results = []
     total_iters = len(entry_grid) * len(exit_grid)
-    pbar = tqdm(total=total_iters, desc=tqdm_desc)
+    pbar = tqdm(total=total_iters, desc=tqdm_desc, disable=not show_progress)
 
     for entry_combo in entry_grid:
         kwargs = entry_fn_kwargs_builder(entry_combo, market_data_daily)
@@ -223,6 +224,7 @@ def optimize_simple_sl_tp(
     sl_mults: list,
     max_holding_bars_list: list,
     exit_on_close: bool = False,
+    show_progress: bool = True,
 ) -> pd.DataFrame:
     """
     Grid search optimization for the simple SL/TP strategy.
@@ -233,7 +235,7 @@ def optimize_simple_sl_tp(
     results = []
     grid = list(itertools.product(tp_mults, sl_mults, max_holding_bars_list))
 
-    for tp, sl, max_bars in tqdm(grid, desc="Optymalizacja Simple SL/TP"):
+    for tp, sl, max_bars in tqdm(grid, desc="Optymalizacja Simple SL/TP", disable=not show_progress):
         trds = simple_sl_tp_labels(
             entries_df=entries_df,
             market_data_daily=market_data_daily,
@@ -284,6 +286,7 @@ def optimize_atr_tbm(
     max_loss_pct: float = 1.0,
     exit_on_close: bool = False,
     min_trades: int = 10,
+    show_progress: bool = True,
 ) -> pd.DataFrame:
     """
     Grid search optimization for ATR entry parameters combined with TBM exits.
@@ -326,6 +329,7 @@ def optimize_atr_tbm(
         exit_on_close=exit_on_close,
         min_trades=min_trades,
         tqdm_desc="Optymalizacja ATR + TBM",
+        show_progress=show_progress,
     )
 
 
@@ -352,6 +356,7 @@ def optimize_bb_tbm(
     max_loss_pct: float = 1.0,
     exit_on_close: bool = False,
     min_trades: int = 10,
+    show_progress: bool = True,
 ) -> pd.DataFrame:
     """
     Grid search optimization for BB entry parameters combined with TBM exits.
@@ -395,4 +400,5 @@ def optimize_bb_tbm(
         exit_on_close=exit_on_close,
         min_trades=min_trades,
         tqdm_desc="Optymalizacja BB + TBM",
+        show_progress=show_progress,
     )

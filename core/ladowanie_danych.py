@@ -494,7 +494,7 @@ import os
 market_symbols: Dict[str, List[str]] = {}
 
 for kuwaa in ['sp500', 'crypto', 'europe']:
-    kuwa = os.path.join("C:\\Users\\stunt\\lyse-lby\\all_data", f"data_{kuwaa}_1d")
+    kuwa = os.path.join("C:\\Users\\PC\\Documents\\Antigravity\\lyse-lby\\all_data", f"data_{kuwaa}_1d")
     csv_files = [f.replace('.csv', '') for f in os.listdir(kuwa) if f.endswith('.csv')]
     market_symbols[kuwaa] = csv_files
 
@@ -854,54 +854,65 @@ def create_stock_dfs(
     """
     Load daily CSVs for symbols, compute indicators and weekly aggregates.
 
+    Obsługiwane wartości `settings['market']`:
+      - 'sp500'  : akcje S&P 500
+      - 'europe' : akcje europejskie
+      - 'crypto' : kryptowaluty
+      - 'all'    : wszystkie powyższe łącznie
+
     Returns (dfs_1d, dfs_1w) where each is a dict mapping symbol -> DataFrame.
     """
     import warnings
     dfs_1d: Dict[str, pd.DataFrame] = {}
     dfs_1w: Dict[str, pd.DataFrame] = {}
 
-    # determine market
+    ALL_DATA_DIR = r"C:\Users\PC\Documents\Antigravity\lyse-lby\all_data"
+
+    # Determine which markets to load
     market = settings.get("market", "sp500")
+    if market == "all":
+        markets_to_load = ["sp500", "europe", "crypto"]
+    else:
+        markets_to_load = [market]
 
+    for mkt in markets_to_load:
+        symbols = market_symbols.get(mkt, []).copy()
+        data_dir = os.path.join(ALL_DATA_DIR, f"data_{mkt}_1d")
 
-    symbols = market_symbols[market].copy()
+        for symbol in tqdm(symbols, desc=f"Loading {mkt}"):
+            df_daily = load_symbol_data_safe(symbol, data_dir, window=window)
+            if df_daily is None:
+                warnings.warn(f"Skipping symbol '{symbol}' due to missing or invalid CSV.")
+                continue
 
-    data_dir = os.path.join(r"C:\Users\stunt\lyse-lby\all_data", f"data_{market}_1d")
+            # add indicators to daily
+            try:
+                df_daily = add_indicators(df_daily.copy(), settings=settings)
+            except Exception as e:
+                warnings.warn(f"Error adding indicators for '{symbol}': {e}")
+                continue
 
-    for symbol in tqdm(symbols, desc="Loading data"):
-        df_daily = load_symbol_data_safe(symbol, data_dir, window=window)
-        if df_daily is None:
-            warnings.warn(f"Skipping symbol '{symbol}' due to missing or invalid CSV.")
-            continue
+            dfs_1d[symbol] = df_daily
 
-        # add indicators to daily
-        try:
-            df_daily = add_indicators(df_daily.copy(), settings=settings)
-        except Exception as e:
-            warnings.warn(f"Error adding indicators for '{symbol}': {e}")
-            continue
-
-        dfs_1d[symbol] = df_daily
-
-        # create weekly DataFrame
-        week_start = settings.get("week_start", "BASE")
-        try:
-            if week_start != "BASE":
-                df_week = daily_to_weekly(df_daily, week_start=week_start)
-            else:
-                # Default weekly resample: week ending on Sunday
-                df_week = df_daily.resample("W").agg({
-                    "Open": "first",
-                    "High": "max",
-                    "Low": "min",
-                    "Close": "last",
-                    "Volume": "sum",
-                }).dropna()
-            df_week = add_indicators(df_week.copy(), settings=settings)
-            dfs_1w[symbol] = df_week
-        except Exception as e:
-            warnings.warn(f"Error creating weekly DataFrame for '{symbol}': {e}")
-            continue
+            # create weekly DataFrame
+            week_start = settings.get("week_start", "BASE")
+            try:
+                if week_start != "BASE":
+                    df_week = daily_to_weekly(df_daily, week_start=week_start)
+                else:
+                    # Default weekly resample: week ending on Sunday
+                    df_week = df_daily.resample("W").agg({
+                        "Open": "first",
+                        "High": "max",
+                        "Low": "min",
+                        "Close": "last",
+                        "Volume": "sum",
+                    }).dropna()
+                df_week = add_indicators(df_week.copy(), settings=settings)
+                dfs_1w[symbol] = df_week
+            except Exception as e:
+                warnings.warn(f"Error creating weekly DataFrame for '{symbol}': {e}")
+                continue
 
     return dfs_1d, dfs_1w
 
