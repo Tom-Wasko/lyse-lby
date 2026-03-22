@@ -76,6 +76,7 @@ def moving_triple_barrier_labels(
         exit_time = future.index[-1]
         exit_reason = "TIME_EXIT"
         exit_loc = len(future)
+        bars_available = len(future)  # track how many bars we actually got
         
         highs = future['High'].values
         lows = future['Low'].values
@@ -148,6 +149,23 @@ def moving_triple_barrier_labels(
                 if new_tp_stop > current_tp_stop:
                     current_tp_stop = new_tp_stop
                     
+        # If we ran out of data before any barrier triggered OR before max_holding_bars,
+        # the trade is still open — record it as OPEN with current barrier state.
+        if exit_reason == "TIME_EXIT" and bars_available < max_holding_bars:
+            trade_record = entry.to_dict()
+            trade_record.update({
+                'exit_time': pd.NaT,
+                'exit_price': np.nan,
+                'return_pct': np.nan,
+                'exit_reason': 'OPEN',
+                'hold_bars': bars_available,
+                'current_sl': current_sl,
+                'current_tp_stop': current_tp_stop,
+                'is_tp_trailing': is_tp_trailing,
+            })
+            trades.append(trade_record)
+            continue
+
         ret_pct = (exit_price - entry_price) / entry_price * 100
         
         trade_record = entry.to_dict()
