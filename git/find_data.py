@@ -15,7 +15,7 @@ from core.ladowanie_danych import create_stock_dfs
 from core.dodanie_formacji import add_candle_patterns
 from odbicie.mackowe_sygnaly import mackowe_sygnaly
 from odbicie.odbicie import generate_odbicie_entries
-from odbicie.odbicie_atr import generate_odbicie_atr_entries
+from odbicie.strategie.odbicie_atr import generate_odbicie_atr_entries
 
 # ---------------------------
 # Indicator functions

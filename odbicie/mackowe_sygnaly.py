@@ -50,7 +50,7 @@ def mackowe_sygnaly(
         "entry_oob": 0,
     }
 
-    for symbol, df in tqdm(dfs.items(), desc=f"📡 Scanning {interval} signals"):
+    for symbol, df in tqdm(dfs.items(), desc=f"Scanning {interval} signals"):
         if df is None or df.empty:
             continue
             
@@ -111,9 +111,9 @@ def mackowe_sygnaly(
     
     if debug:
         if signals_df.empty:
-            print("⚠️ No signals found. Debug summary:")
+            print("No signals found. Debug summary:")
         else:
-            print(f"✅ Found {len(signals_df)} signals. Debug summary:")
+            print(f"Found {len(signals_df)} signals. Debug summary:")
         for k, v in debug_counts.items():
             print(f"  {k}: {v}")
 

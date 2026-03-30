@@ -493,9 +493,12 @@ SYMBOLS_500 = [
 import os
 market_symbols: Dict[str, List[str]] = {}
 
-for kuwaa in ['sp500', 'crypto', 'europe']:
+for kuwaa in ['sp500', 'midcap', 'crypto', 'europe']:
     kuwa = os.path.join("C:\\Users\\PC\\Documents\\Antigravity\\lyse-lby\\all_data", f"data_{kuwaa}_1d")
-    csv_files = [f.replace('.csv', '') for f in os.listdir(kuwa) if f.endswith('.csv')]
+    if os.path.isdir(kuwa):
+        csv_files = [f.replace('.csv', '') for f in os.listdir(kuwa) if f.endswith('.csv')]
+    else:
+        csv_files = []
     market_symbols[kuwaa] = csv_files
 
 '''
@@ -871,7 +874,7 @@ def create_stock_dfs(
     # Determine which markets to load
     market = settings.get("market", "sp500")
     if market == "all":
-        markets_to_load = ["sp500", "europe", "crypto"]
+        markets_to_load = ["sp500", "midcap", "europe", "crypto"]
     else:
         markets_to_load = [market]
 

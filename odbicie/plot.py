@@ -24,7 +24,8 @@ def _val(p):
 
 def _simulate_barriers(entry_price, atr, highs, lows, tp_mult, sl_mult, ttp_mult,
                        max_holding_bars=15, active_trailing_sl=False,
-                       sl_trail_mult=2.0, max_loss_pct=1.0, time_decay_sl=False,
+                       sl_trail_mult=2.0, time_decay_sl=False,
+                       time_decay_mult=1.0,
                        strategy_type='tbm'):
     vol_val = atr if (not np.isnan(atr) and atr != 0) else entry_price * 0.02
 
@@ -41,9 +42,7 @@ def _simulate_barriers(entry_price, atr, highs, lows, tp_mult, sl_mult, ttp_mult
         return sl_vals, tp_act_vals, ttp_vals, None
 
     # TBM logic
-    calculated_sl     = entry_price - vol_val * sl_mult
-    hard_cap_sl       = entry_price * (1 - max_loss_pct)
-    current_sl        = max(calculated_sl, hard_cap_sl)
+    current_sl        = entry_price - vol_val * sl_mult
     tp_activation     = entry_price + vol_val * tp_mult
     tp_trail_distance = vol_val * ttp_mult
 
@@ -65,7 +64,9 @@ def _simulate_barriers(entry_price, atr, highs, lows, tp_mult, sl_mult, ttp_mult
 
         # 1.5 Time decay SL
         if time_decay_sl:
-            current_sl_distance = max_sl_distance * (1 - (i / max_holding_bars))
+            current_sl_distance = max_sl_distance * (1 - (i / max_holding_bars) * time_decay_mult)
+            if current_sl_distance < 0:
+                current_sl_distance = 0
             new_decay_sl = entry_price - current_sl_distance
             if new_decay_sl > current_sl:
                 current_sl = new_decay_sl
@@ -96,9 +97,9 @@ def _build_entry_info(row):
     """
     Build entry-method specific info lines.
     Auto-detects whether the trade came from:
-      - odbicie.py        (threshold_pct)
-      - odbicie_atr.py   (atr_factor / atr_period)
-      - odbicie_bb.py    (bb_period / bb_std)
+      - strategie/odbicie.py        (threshold_pct)
+      - strategie/odbicie_atr.py   (atr_factor / atr_period)
+      - strategie/odbicie_bb.py    (bb_period / bb_std)
     """
     lines = []
     if 'entry_atr' in row.index and not pd.isna(row.get('entry_atr')):
@@ -211,9 +212,9 @@ def _draw_indicator_overlay(ax, df, row, date_to_x):
                     alpha=0.7, label=f'ATR ({period})')
 
 
-def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
+def show_trade_viewer(trades_df, dfs_1d, tp_mult, sl_mult, ttp_mult, max_holding_bars, exit_reason="all",
                       active_trailing_sl=False, sl_trail_mult=2.0,
-                      max_loss_pct=1.0, time_decay_sl=False, exit_on_close=False,
+                      time_decay_sl=False, time_decay_mult=1.0, exit_on_close=False,
                       strategy_type="tbm"):
     """
     Display an interactive candlestick trade viewer widget.
@@ -221,10 +222,10 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
     `strategy_type` can be "tbm" or "simple".
     """
 
-    tp_mult  = float(tpm)
-    sl_mult  = float(slm)
-    ttp_mult = float(ttpm)
-    max_bars = int(mhb)
+    tp_mult  = float(tp_mult)
+    sl_mult  = float(sl_mult)
+    ttp_mult = float(ttp_mult)
+    max_bars = int(max_holding_bars)
 
     PARAMS_BOX = {
         'Strategy':         strategy_type.upper(),
@@ -281,8 +282,8 @@ def show_trade_viewer(trades_df, dfs_1d, tpm, slm, ttpm, mhb, exit_reason="all",
             future['High'].values, future['Low'].values,
             tp_mult, sl_mult, ttp_mult,
             max_holding_bars=max_bars, active_trailing_sl=active_trailing_sl,
-            sl_trail_mult=sl_trail_mult, max_loss_pct=max_loss_pct,
-            time_decay_sl=time_decay_sl, strategy_type=strategy_type
+            sl_trail_mult=sl_trail_mult,
+            time_decay_sl=time_decay_sl, time_decay_mult=time_decay_mult, strategy_type=strategy_type
         )
 
         trades_data.append({
