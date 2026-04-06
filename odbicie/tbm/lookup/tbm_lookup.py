@@ -13,8 +13,8 @@ Excluded from keys: enter_on_close, exit_on_close (always True).
 
 Usage
 -----
-    from odbicie.tbm.tbm_lookup import TbmLookup
-    lookup = TbmLookup('odbicie/cache/tbm_lookup.json')
+    from odbicie.tbm.lookup.tbm_lookup import TbmLookup
+    lookup = TbmLookup('odbicie/cache/lookup/tbm_lookup.json')
 
     # Save after Optuna
     lookup.save('bb', strat_settings, best_tbm, {'return_per_bar': study.best_value})

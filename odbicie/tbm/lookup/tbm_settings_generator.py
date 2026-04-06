@@ -3,7 +3,7 @@ tbm_settings_generator.py
 ==========================
 Automatically sweeps all entry parameter combinations for all strategies,
 finds optimal TBM settings via Optuna on TRAIN data, validates on TEST data,
-and saves only non-overfitted results to tbm_lookup.json.
+and saves only non-overfitted results to lookup/tbm_lookup.json.
 
 IMPORTANT: Run download_history.py first to get data back to 2015.
 
@@ -35,8 +35,8 @@ _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
-from odbicie.tbm.tbm_lookup import TbmLookup
-from odbicie.tbm.tbm_predictor import TbmPredictor
+from odbicie.tbm.lookup.tbm_lookup import TbmLookup
+from odbicie.tbm.predyktor.pred import TbmPredictor
 from odbicie.tbm.tbm import moving_triple_barrier_labels
 from odbicie.mackowe_sygnaly import mackowe_sygnaly
 from odbicie.strategie.odbicie import generate_odbicie_entries
@@ -81,7 +81,7 @@ MARKET = "all"
 # Paths
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _CACHE_DIR  = os.path.abspath(os.path.join(_SCRIPT_DIR, "..", "cache"))
-LOOKUP_PATH = os.path.join(_CACHE_DIR, "tbm_lookup.json")
+LOOKUP_PATH = os.path.join(_CACHE_DIR, "lookup/tbm_lookup.json")
 # NOTE: Delete this cache file after running download_history.py to pick up new symbols
 DATA_CACHE  = os.path.join(_CACHE_DIR, f"dfs_cache_{MARKET}.pkl")
 
