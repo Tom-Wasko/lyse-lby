@@ -36,6 +36,7 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 from odbicie.tbm.tbm_lookup import TbmLookup
+from odbicie.tbm.tbm_predictor import TbmPredictor
 from odbicie.tbm.tbm import moving_triple_barrier_labels
 from odbicie.mackowe_sygnaly import mackowe_sygnaly
 from odbicie.strategie.odbicie import generate_odbicie_entries
@@ -44,7 +45,7 @@ from odbicie.strategie.odbicie_bb import generate_odbicie_bb_entries
 from core.ladowanie_danych import create_stock_dfs
 
 try:
-    from tqdm.tk import tqdm
+    from tqdm import tqdm
 except ImportError:
     def tqdm(x, **kw): return x  # type: ignore
 
@@ -58,8 +59,8 @@ TRAIN_END   = "2022-12-31"
 TEST_START  = "2023-01-01"
 TEST_END    = "2026-12-31"   # effectively 'today' if data is current
 
-# Optuna trials per entry-param combo
-N_TRIALS = 60
+# Optuna trials per entry-param combo (warm-start fallback only; zero-shot uses 0)
+N_TRIALS = 20
 
 # Overfit gate thresholds
 MIN_TEST_RPB      = 0.02    # test return/bar must be at least this (positive)
@@ -67,7 +68,7 @@ MAX_OVERFIT_RATIO = 4.0    # train_rpb must not be more than this × test_rpb
 MIN_TEST_TRADES   = 8      # minimum closed trades on test set
 
 # Which strategies to run ('base', 'atr', 'bb')
-STRATEGIES = ['base', 'atr', 'bb']
+STRATEGIES = ['bb']
 
 # Dry run: compute everything but do NOT save
 DRY_RUN = False
@@ -88,20 +89,20 @@ DATA_CACHE  = os.path.join(_CACHE_DIR, f"dfs_cache_{MARKET}.pkl")
 # Only numeric params; enter_on_close is always True.
 
 GRID_BASE = {
-    "threshold_pct":       [0.05, 0.10, 0.15, 0.18, 0.22, 0.27],
-    "max_setup_hold_bars": [5, 7, 10, 15],
+    "threshold_pct":       [0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11, 0.12, 0.13, 0.14, 0.16, 0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30, 0.35, 0.40],
+    "max_setup_hold_bars": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 25, 28, 35],
 }
 
 GRID_ATR = {
-    "atr_period":          [10, 14, 17, 20],
-    "atr_factor":          [2.5, 3.0, 3.5, 4.0, 4.25, 4.5, 5.0],
-    "max_setup_hold_bars": [5, 7, 10, 15],
+    "atr_period":          [7, 10, 14, 17, 20, 25],
+    "atr_factor":          [2.0, 2.5, 3.0, 3.5, 3.8, 4.0, 4.25, 4.5, 5.0, 5.5],
+    "max_setup_hold_bars": [3, 5, 7, 10, 15, 20],
 }
 
 GRID_BB = {
-    "bb_period":           [5, 7, 10, 14, 20],
-    "bb_std":              [1.5, 2.0, 2.2, 2.5, 2.8, 3.2],
-    "max_setup_hold_bars": [5, 7, 10, 15],
+    "bb_period":           [5, 7, 10, 14, 20, 30],
+    "bb_std":              [1.5, 1.8, 2.0, 2.2, 2.5, 2.8, 3.2, 3.5],
+    "max_setup_hold_bars": [3, 5, 7, 10, 15, 20],
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -208,14 +209,14 @@ def _make_objective(
     """Factory returning an Optuna objective that optimises TBM params."""
 
     def objective(trial: optuna.Trial) -> float:
-        tp_mult        = trial.suggest_float("tp_mult",        0.2, 2.5, step=0.1)
-        sl_mult        = trial.suggest_float("sl_mult",        0.5, 4.0, step=0.1)
-        tp_trail_mult  = trial.suggest_float("tp_trail_mult",  0.02, 0.25, step=0.01)
-        sl_trail_mult  = trial.suggest_float("sl_trail_mult",  0.5, 6.0, step=0.1)
-        max_holding_bars = trial.suggest_int("max_holding_bars", 5, 22)
+        tp_mult        = trial.suggest_float("tp_mult",        0.1, 5.0, step=0.1)
+        sl_mult        = trial.suggest_float("sl_mult",        0.2, 8.0, step=0.1)
+        tp_trail_mult  = trial.suggest_float("tp_trail_mult",  0.01, 1.0, step=0.01)
+        sl_trail_mult  = trial.suggest_float("sl_trail_mult",  0.2, 10.0, step=0.1)
+        max_holding_bars = trial.suggest_int("max_holding_bars", 3, 25)
         active_trail_sl  = trial.suggest_categorical("active_trail_sl", [True, False])
         time_decay_sl    = trial.suggest_categorical("time_decay_sl",   [True, False])
-        time_decay_mult  = trial.suggest_float("time_decay_mult", 0.5, 3.0, step=0.1)
+        time_decay_mult  = trial.suggest_float("time_decay_mult", 0.1, 8.0, step=0.1)
 
         trds = moving_triple_barrier_labels(
             entries_df=entries_df,
@@ -242,6 +243,64 @@ def _make_objective(
 # Per-combo pipeline
 # ══════════════════════════════════════════════════════════════════════════════
 
+def _evaluate_tbm_params(
+    tbm_params: Dict[str, Any],
+    train_entries: pd.DataFrame,
+    test_entries: pd.DataFrame,
+    dfs_1d_full: Dict[str, pd.DataFrame],
+) -> Tuple[float, float, int]:
+    """
+    Run TBM with the given params on train and test entries.
+    Returns (train_rpb, test_rpb, test_n).
+    """
+    train_trds = moving_triple_barrier_labels(
+        entries_df=train_entries,
+        market_data_daily=dfs_1d_full,
+        tp_mult=tbm_params["tp_mult"],
+        sl_mult=tbm_params["sl_mult"],
+        tp_trail_mult=tbm_params["tp_trail_mult"],
+        sl_trail_mult=tbm_params["sl_trail_mult"],
+        max_holding_bars=int(tbm_params["max_holding_bars"]),
+        active_trailing_sl=bool(tbm_params["active_trail_sl"]),
+        time_decay_sl=bool(tbm_params["time_decay_sl"]),
+        time_decay_mult=tbm_params["time_decay_mult"],
+        exit_on_close=True,
+    )
+    train_rpb = _compute_rpb(train_trds)
+
+    test_trds = moving_triple_barrier_labels(
+        entries_df=test_entries,
+        market_data_daily=dfs_1d_full,
+        tp_mult=tbm_params["tp_mult"],
+        sl_mult=tbm_params["sl_mult"],
+        tp_trail_mult=tbm_params["tp_trail_mult"],
+        sl_trail_mult=tbm_params["sl_trail_mult"],
+        max_holding_bars=int(tbm_params["max_holding_bars"]),
+        active_trailing_sl=bool(tbm_params["active_trail_sl"]),
+        time_decay_sl=bool(tbm_params["time_decay_sl"]),
+        time_decay_mult=tbm_params["time_decay_mult"],
+        exit_on_close=True,
+    )
+    test_rpb = _compute_rpb(test_trds)
+    test_n = _n_closed_trades(test_trds)
+    return train_rpb, test_rpb, test_n
+
+
+def _passes_overfit_gate(train_rpb: float, test_rpb: float, test_n: int) -> Tuple[bool, str]:
+    """Check overfit gate. Returns (passed, status_string)."""
+    if test_n < MIN_TEST_TRADES:
+        return False, f"reject_too_few_test_trades({test_n})"
+    if test_rpb < MIN_TEST_RPB:
+        return False, f"reject_test_rpb_too_low({test_rpb:.4f})"
+    if train_rpb > 0 and test_rpb > 0:
+        ratio = train_rpb / test_rpb
+    else:
+        ratio = float("inf")
+    if ratio > MAX_OVERFIT_RATIO:
+        return False, f"reject_overfit(ratio={ratio:.2f})"
+    return True, f"ratio={ratio:.2f}"
+
+
 def _run_combo(
     strategy: str,
     entry_params: Dict[str, Any],
@@ -249,22 +308,114 @@ def _run_combo(
     test_signals:  pd.DataFrame,
     dfs_1d_full:   Dict[str, pd.DataFrame],
     lookup: TbmLookup,
+    predictor: Optional["TbmPredictor"] = None,
 ) -> Dict[str, Any]:
     """
     Full pipeline for one (strategy, entry_params) combination.
+
+    Stage 0 — Zero-shot prediction (if predictor is ready):
+        The ML model predicts 9 TBM params. If they pass the overfit gate,
+        save and return immediately (0 Optuna trials).
+
+    Stage 1 — Warm-start Optuna fallback:
+        Enqueue the ML prediction + up to 3 KNN historical neighbors into
+        Optuna, then run N_TRIALS trials. Optuna evaluates the enqueued
+        candidates first, then Bayesian-searches nearby regions.
+
     Returns a result dict with 'status' key.
     """
     result: Dict[str, Any] = {"strategy": strategy, "entry_params": entry_params, "status": "?"}
 
-    # -- 1. Generate train entries ---------------------------------------------
+    # -- 1. Generate entries ---------------------------------------------------
     train_entries = _make_entries(strategy, entry_params, train_signals, dfs_1d_full)
     if train_entries.empty or len(train_entries) < 10:
         result["status"] = "skip_too_few_train_entries"
         return result
 
-    # -- 2. Optuna on train ----------------------------------------------------
+    test_entries = _make_entries(strategy, entry_params, test_signals, dfs_1d_full)
+    if test_entries.empty:
+        result["status"] = "skip_no_test_entries"
+        return result
+
+    entry_key_params = {k: v for k, v in entry_params.items() if k != "enter_on_close"}
+
+    # ── Stage 0: Zero-shot ML prediction ──────────────────────────────────────
+    if predictor is not None and predictor.is_ready:
+        predicted_tbm = predictor.predict(entry_params)
+        if predicted_tbm is not None:
+            try:
+                train_rpb, test_rpb, test_n = _evaluate_tbm_params(
+                    predicted_tbm, train_entries, test_entries, dfs_1d_full
+                )
+                passed, gate_str = _passes_overfit_gate(train_rpb, test_rpb, test_n)
+                if passed:
+                    ratio = round(train_rpb / test_rpb, 3) if test_rpb > 0 else float("inf")
+                    metrics = {
+                        "return_per_bar": test_rpb,
+                        "train_return_per_bar": train_rpb,
+                        "test_trade_count": test_n,
+                        "overfit_ratio": ratio,
+                    }
+                    if not DRY_RUN:
+                        lookup.save(strategy, entry_key_params, predicted_tbm, metrics)
+                    result["status"] = "SAVED_ZERO_SHOT" if not DRY_RUN else "DRY_RUN_ZERO_SHOT"
+                    result["train_rpb"] = train_rpb
+                    result["test_rpb"] = test_rpb
+                    result["test_trades"] = test_n
+                    result["best_tbm"] = predicted_tbm
+                    result["metrics"] = metrics
+                    return result
+            except Exception:
+                pass  # prediction or backtest failed — fall through to Optuna
+
+    # ── Stage 1: Warm-start Optuna ────────────────────────────────────────────
     study = optuna.create_study(direction="maximize")
-    obj   = _make_objective(train_entries, dfs_1d_full)
+
+    # Collect warm-start candidates to enqueue
+    warm_candidates: List[Dict[str, Any]] = []
+
+    # a) ML zero-shot prediction (if available but didn't pass gate)
+    if predictor is not None and predictor.is_ready:
+        predicted_tbm = predictor.predict(entry_params)
+        if predicted_tbm is not None:
+            warm_candidates.append(predicted_tbm)
+
+    # b) Up to 3 KNN historical neighbors
+    if predictor is not None:
+        neighbors = predictor.knn_neighbors(entry_params, k=3)
+        for nb in neighbors:
+            warm_candidates.append(nb["tbm_params"])
+
+    # Enqueue all candidates (Optuna evaluates these before Bayesian sampling)
+    _OPTUNA_PARAM_MAP = {
+        "tp_mult":         lambda t: t.suggest_float("tp_mult",        0.1, 5.0, step=0.1),
+        "sl_mult":         lambda t: t.suggest_float("sl_mult",        0.2, 8.0, step=0.1),
+        "tp_trail_mult":   lambda t: t.suggest_float("tp_trail_mult",  0.01, 1.0, step=0.01),
+        "sl_trail_mult":   lambda t: t.suggest_float("sl_trail_mult",  0.2, 10.0, step=0.1),
+        "time_decay_mult": lambda t: t.suggest_float("time_decay_mult", 0.1, 8.0, step=0.1),
+        "max_holding_bars":lambda t: t.suggest_int("max_holding_bars", 3, 25),
+        "active_trail_sl": lambda t: t.suggest_categorical("active_trail_sl", [True, False]),
+        "time_decay_sl":   lambda t: t.suggest_categorical("time_decay_sl",   [True, False]),
+    }
+
+    for candidate in warm_candidates:
+        try:
+            enqueue_dict = {
+                "tp_mult":          float(round(max(0.1, min(5.0, candidate["tp_mult"])), 1)),
+                "sl_mult":          float(round(max(0.2, min(8.0, candidate["sl_mult"])), 1)),
+                "tp_trail_mult":    float(round(max(0.01, min(1.0, candidate["tp_trail_mult"])), 2)),
+                "sl_trail_mult":    float(round(max(0.2, min(10.0, candidate["sl_trail_mult"])), 1)),
+                "time_decay_mult":  float(round(max(0.1, min(8.0, candidate["time_decay_mult"])), 1)),
+                "max_holding_bars": int(max(3, min(25, round(candidate["max_holding_bars"])))),
+                "active_trail_sl":  bool(candidate["active_trail_sl"]),
+                "time_decay_sl":    bool(candidate["time_decay_sl"]),
+            }
+            study.enqueue_trial(enqueue_dict)
+        except Exception:
+            pass  # skip malformed candidate
+
+    # Run Optuna (enqueued trials execute first, then Bayesian sampling)
+    obj = _make_objective(train_entries, dfs_1d_full)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         study.optimize(obj, n_trials=N_TRIALS, show_progress_bar=False)
@@ -288,64 +439,34 @@ def _run_combo(
     result["train_rpb"] = train_rpb
     result["best_tbm"]  = best_tbm
 
-    # -- 3. Validate on test ---------------------------------------------------
-    test_entries = _make_entries(strategy, entry_params, test_signals, dfs_1d_full)
-    if test_entries.empty:
-        result["status"] = "skip_no_test_entries"
-        return result
-
-    test_trds = moving_triple_barrier_labels(
-        entries_df=test_entries,
-        market_data_daily=dfs_1d_full,
-        tp_mult=p["tp_mult"],
-        sl_mult=p["sl_mult"],
-        tp_trail_mult=p["tp_trail_mult"],
-        sl_trail_mult=p["sl_trail_mult"],
-        max_holding_bars=p["max_holding_bars"],
-        active_trailing_sl=p["active_trail_sl"],
-        time_decay_sl=p["time_decay_sl"],
-        time_decay_mult=p["time_decay_mult"],
-        exit_on_close=True,
+    # -- Validate on test ------------------------------------------------------
+    _, test_rpb, test_n = _evaluate_tbm_params(
+        best_tbm, train_entries, test_entries, dfs_1d_full
     )
-
-    test_n   = _n_closed_trades(test_trds)
-    test_rpb = _compute_rpb(test_trds)
 
     result["test_rpb"]    = test_rpb
     result["test_trades"] = test_n
 
-    # -- 4. Overfit gate -------------------------------------------------------
-    if test_n < MIN_TEST_TRADES:
-        result["status"] = f"reject_too_few_test_trades({test_n})"
+    # -- Overfit gate ----------------------------------------------------------
+    passed, gate_str = _passes_overfit_gate(train_rpb, test_rpb, test_n)
+    if not passed:
+        result["status"] = gate_str
         return result
 
-    if test_rpb < MIN_TEST_RPB:
-        result["status"] = f"reject_test_rpb_too_low({test_rpb:.4f})"
-        return result
+    ratio = round(train_rpb / test_rpb, 3) if test_rpb > 0 else float("inf")
 
-    if train_rpb > 0 and test_rpb > 0:
-        ratio = train_rpb / test_rpb
-    else:
-        ratio = float("inf")
-
-    if ratio > MAX_OVERFIT_RATIO:
-        result["status"] = f"reject_overfit(ratio={ratio:.2f})"
-        return result
-
-    # -- 5. Save ---------------------------------------------------------------
+    # -- Save ------------------------------------------------------------------
     metrics = {
-        "return_per_bar": test_rpb,  # store TEST metric as the trusted metric
+        "return_per_bar": test_rpb,
         "train_return_per_bar": train_rpb,
         "test_trade_count": test_n,
-        "overfit_ratio": round(ratio, 3),
+        "overfit_ratio": ratio,
     }
-
-    entry_key_params = {k: v for k, v in entry_params.items() if k != "enter_on_close"}
 
     if not DRY_RUN:
         lookup.save(strategy, entry_key_params, best_tbm, metrics)
 
-    result["status"] = "SAVED" if not DRY_RUN else "DRY_RUN_PASS"
+    result["status"] = "SAVED_WARM_START" if not DRY_RUN else "DRY_RUN_WARM_START"
     result["metrics"] = metrics
     return result
 
@@ -409,6 +530,17 @@ def main():
     lookup = TbmLookup(LOOKUP_PATH)
     print(f"\nLookup store: {lookup}")
 
+    # -- Meta-learning predictors (one per strategy) ---------------------------
+    predictors: Dict[str, Optional[TbmPredictor]] = {}
+    for strat in STRATEGIES:
+        try:
+            pred = TbmPredictor(LOOKUP_PATH, strat, cache_dir=_CACHE_DIR)
+            predictors[strat] = pred
+            print(f"  Predictor [{strat}]: {pred}")
+        except Exception as exc:
+            print(f"  Predictor [{strat}]: unavailable ({exc})")
+            predictors[strat] = None
+
     # -- Build strategy grids --------------------------------------------------
     strategy_grids: Dict[str, List[Dict]] = {}
 
@@ -450,6 +582,15 @@ def main():
 
         for entry_params in tqdm(combos, desc=f"  {strategy}", unit="combo"):
             combo_idx += 1
+
+            # --- SKIP if already exists in lookup ---
+            entry_key_params = {k: v for k, v in entry_params.items() if k != "enter_on_close"}
+            existing = lookup.lookup(strategy, entry_key_params, max_distance=0)
+            if existing:
+                # Still show in tqdm output but skip processing
+                # tqdm.write(f"  [{combo_idx}/{total_combos}] {strategy} {_short_params(entry_params)} -> SKIPPED (already exists)")
+                continue
+
             res = _run_combo(
                 strategy=strategy,
                 entry_params=entry_params,
@@ -457,6 +598,7 @@ def main():
                 test_signals=test_signals,
                 dfs_1d_full=dfs_1d,
                 lookup=lookup,
+                predictor=predictors.get(strategy),
             )
             results.append(res)
             status = res["status"]
@@ -484,12 +626,15 @@ def _print_summary(results: List[Dict], lookup: TbmLookup):
     print("  SUMMARY")
     print("=" * 65)
 
-    saved    = [r for r in results if r["status"] in ("SAVED", "DRY_RUN_PASS")]
-    rejected = [r for r in results if r["status"].startswith("reject")]
-    skipped  = [r for r in results if r["status"].startswith("skip")]
+    zero_shot  = [r for r in results if "ZERO_SHOT" in r["status"]]
+    warm_start = [r for r in results if "WARM_START" in r["status"]]
+    saved      = zero_shot + warm_start
+    rejected   = [r for r in results if r["status"].startswith("reject")]
+    skipped    = [r for r in results if r["status"].startswith("skip")]
 
     print(f"  Total combos   : {len(results)}")
-    print(f"  Saved / Passed : {len(saved)}")
+    print(f"  Saved (zero-shot)  : {len(zero_shot)}")
+    print(f"  Saved (warm-start) : {len(warm_start)}")
     print(f"  Rejected (overfit/low perf) : {len(rejected)}")
     print(f"  Skipped (not enough data)   : {len(skipped)}")
 
