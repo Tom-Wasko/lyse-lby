@@ -1,0 +1,4060 @@
+{
+  "base": [
+    {
+      "entry_key": "max_setup_hold_bars=5.0|threshold_pct=0.05",
+      "numeric_entry_params": {
+        "threshold_pct": 0.05,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.13999999999999999,
+        "sl_trail_mult": 1.6,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0050763034260117,
+        "train_return_per_bar": 0.9697935060724259,
+        "test_trade_count": 232,
+        "overfit_ratio": 0.965
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.05",
+      "numeric_entry_params": {
+        "threshold_pct": 0.05,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 3.2,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 13,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8595174794290342,
+        "train_return_per_bar": 0.8897419707632488,
+        "test_trade_count": 277,
+        "overfit_ratio": 1.035
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.05",
+      "numeric_entry_params": {
+        "threshold_pct": 0.05,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 2.4000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8949156914943327,
+        "train_return_per_bar": 0.8441379365096167,
+        "test_trade_count": 328,
+        "overfit_ratio": 0.943
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.05",
+      "numeric_entry_params": {
+        "threshold_pct": 0.05,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 5.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7692016523872066,
+        "train_return_per_bar": 0.7853090219930853,
+        "test_trade_count": 393,
+        "overfit_ratio": 1.021
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=5.0|threshold_pct=0.1",
+      "numeric_entry_params": {
+        "threshold_pct": 0.1,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.19999999999999998,
+        "sl_trail_mult": 5.7,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.5940647625866826,
+        "train_return_per_bar": 1.38587486450881,
+        "test_trade_count": 65,
+        "overfit_ratio": 0.869
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.1",
+      "numeric_entry_params": {
+        "threshold_pct": 0.1,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.13999999999999999,
+        "sl_trail_mult": 3.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.6,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.2597129633209427,
+        "train_return_per_bar": 1.4640622985988356,
+        "test_trade_count": 85,
+        "overfit_ratio": 1.162
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.1",
+      "numeric_entry_params": {
+        "threshold_pct": 0.1,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 5.800000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.079426252785627,
+        "train_return_per_bar": 1.3880274546986604,
+        "test_trade_count": 114,
+        "overfit_ratio": 1.286
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.1",
+      "numeric_entry_params": {
+        "threshold_pct": 0.1,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 2.7,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 1.2000000000000002,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6491673275180461,
+        "train_return_per_bar": 0.9570406845842787,
+        "test_trade_count": 190,
+        "overfit_ratio": 1.474
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=5.0|threshold_pct=0.15",
+      "numeric_entry_params": {
+        "threshold_pct": 0.15,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.6,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 4.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.7,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.636796213663385,
+        "train_return_per_bar": 1.9673073685806912,
+        "test_trade_count": 23,
+        "overfit_ratio": 0.746
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.15",
+      "numeric_entry_params": {
+        "threshold_pct": 0.15,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 3.4000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.0573203344827995,
+        "train_return_per_bar": 1.9072830762269617,
+        "test_trade_count": 32,
+        "overfit_ratio": 0.927
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.15",
+      "numeric_entry_params": {
+        "threshold_pct": 0.15,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.5964871663831033,
+        "train_return_per_bar": 1.781018862129677,
+        "test_trade_count": 48,
+        "overfit_ratio": 1.116
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.15",
+      "numeric_entry_params": {
+        "threshold_pct": 0.15,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.9000000000000004,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0450648309176267,
+        "train_return_per_bar": 1.6252533811030112,
+        "test_trade_count": 89,
+        "overfit_ratio": 1.555
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=5.0|threshold_pct=0.18",
+      "numeric_entry_params": {
+        "threshold_pct": 0.18,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.6,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 5.7,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.8,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.4674308916649905,
+        "train_return_per_bar": 2.2313583413323816,
+        "test_trade_count": 15,
+        "overfit_ratio": 0.644
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.18",
+      "numeric_entry_params": {
+        "threshold_pct": 0.18,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.22,
+        "sl_trail_mult": 2.2,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.412012853777794,
+        "train_return_per_bar": 2.199237411309009,
+        "test_trade_count": 22,
+        "overfit_ratio": 0.912
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.18",
+      "numeric_entry_params": {
+        "threshold_pct": 0.18,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.7,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.644639027722515,
+        "train_return_per_bar": 2.021587548323131,
+        "test_trade_count": 34,
+        "overfit_ratio": 1.229
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.18",
+      "numeric_entry_params": {
+        "threshold_pct": 0.18,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.11,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.280688907314727,
+        "train_return_per_bar": 1.6533223632184528,
+        "test_trade_count": 64,
+        "overfit_ratio": 1.291
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=5.0|threshold_pct=0.22",
+      "numeric_entry_params": {
+        "threshold_pct": 0.22,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.6,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 5.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.252819947016225,
+        "train_return_per_bar": 2.646456796927712,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.504
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.22",
+      "numeric_entry_params": {
+        "threshold_pct": 0.22,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.6,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 2.4000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.7518573841071015,
+        "train_return_per_bar": 2.623595196301138,
+        "test_trade_count": 14,
+        "overfit_ratio": 0.699
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.22",
+      "numeric_entry_params": {
+        "threshold_pct": 0.22,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 1.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 10,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.6517046501577752,
+        "train_return_per_bar": 2.2709685961327035,
+        "test_trade_count": 22,
+        "overfit_ratio": 0.856
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.22",
+      "numeric_entry_params": {
+        "threshold_pct": 0.22,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 3.9000000000000004,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.8283809512393296,
+        "train_return_per_bar": 1.6483921064486564,
+        "test_trade_count": 37,
+        "overfit_ratio": 0.902
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=7.0|threshold_pct=0.27",
+      "numeric_entry_params": {
+        "threshold_pct": 0.27,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 2.3,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 2.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.3,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 6.189375852758174,
+        "train_return_per_bar": 3.226179951586738,
+        "test_trade_count": 9,
+        "overfit_ratio": 0.521
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=10.0|threshold_pct=0.27",
+      "numeric_entry_params": {
+        "threshold_pct": 0.27,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 2.1,
+        "sl_mult": 2.4000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 5.1000000000000005,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.7,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.468786798077109,
+        "train_return_per_bar": 2.8066564026419303,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.513
+      }
+    },
+    {
+      "entry_key": "max_setup_hold_bars=15.0|threshold_pct=0.27",
+      "numeric_entry_params": {
+        "threshold_pct": 0.27,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 5.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.1,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.7382936095850026,
+        "train_return_per_bar": 1.7698066601192617,
+        "test_trade_count": 16,
+        "overfit_ratio": 0.473
+      }
+    }
+  ],
+  "atr": [
+    {
+      "entry_key": "atr_factor=2.5|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 2.9000000000000004,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 3.6,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 3.0,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0771252400579272,
+        "train_return_per_bar": 1.0331337330385173,
+        "test_trade_count": 50,
+        "overfit_ratio": 0.959
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.9000000000000004,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8432367435349295,
+        "train_return_per_bar": 1.1844898482052948,
+        "test_trade_count": 75,
+        "overfit_ratio": 1.405
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 3.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6977642081636902,
+        "train_return_per_bar": 0.9549589082895495,
+        "test_trade_count": 118,
+        "overfit_ratio": 1.369
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.45192612732923576,
+        "train_return_per_bar": 0.7496357150108961,
+        "test_trade_count": 184,
+        "overfit_ratio": 1.659
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 2.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.7501010038275857,
+        "train_return_per_bar": 1.0710532035399067,
+        "test_trade_count": 33,
+        "overfit_ratio": 0.612
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 2.3,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 4.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.015654891542203,
+        "train_return_per_bar": 1.0377414428894567,
+        "test_trade_count": 52,
+        "overfit_ratio": 1.022
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 3.5,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8870633750878192,
+        "train_return_per_bar": 0.5985204320545846,
+        "test_trade_count": 79,
+        "overfit_ratio": 0.675
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.3241211119856271,
+        "train_return_per_bar": 0.5687295743554925,
+        "test_trade_count": 133,
+        "overfit_ratio": 1.755
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 2.5,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 2.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.8,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.8647133580677826,
+        "train_return_per_bar": 1.3194582133186123,
+        "test_trade_count": 19,
+        "overfit_ratio": 0.461
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 3.8000000000000003,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.2767233573620738,
+        "train_return_per_bar": 1.4134189242456758,
+        "test_trade_count": 26,
+        "overfit_ratio": 0.621
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 1.2000000000000002,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.7,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.3744883387411293,
+        "train_return_per_bar": 0.7930731735047258,
+        "test_trade_count": 54,
+        "overfit_ratio": 0.577
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 6.0,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8660708671384411,
+        "train_return_per_bar": 0.8277056172716273,
+        "test_trade_count": 92,
+        "overfit_ratio": 0.956
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 2.3,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.182496056606161,
+        "train_return_per_bar": 1.8918190187331994,
+        "test_trade_count": 13,
+        "overfit_ratio": 0.452
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.6000000000000001,
+        "sl_mult": 2.8000000000000003,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 4.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.3052389544805485,
+        "train_return_per_bar": 1.7278945478846928,
+        "test_trade_count": 21,
+        "overfit_ratio": 0.75
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 4.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.6696038114223093,
+        "train_return_per_bar": 1.0091038449139096,
+        "test_trade_count": 36,
+        "overfit_ratio": 0.604
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 1.2000000000000002,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.4000000000000004,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.1557740159546335,
+        "train_return_per_bar": 0.924459176891099,
+        "test_trade_count": 66,
+        "overfit_ratio": 0.8
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 1.4,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.492308076773511,
+        "train_return_per_bar": 2.1363496309207504,
+        "test_trade_count": 12,
+        "overfit_ratio": 0.476
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 0.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.8187493575054616,
+        "train_return_per_bar": 1.9539333448685183,
+        "test_trade_count": 19,
+        "overfit_ratio": 0.693
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 1.4,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 8,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.728236478318208,
+        "train_return_per_bar": 1.1210456146153986,
+        "test_trade_count": 32,
+        "overfit_ratio": 0.649
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 3.0,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.2217163237600768,
+        "train_return_per_bar": 1.090613709168152,
+        "test_trade_count": 55,
+        "overfit_ratio": 0.893
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=10.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 2.3,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 4.4,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 6.471688053039813,
+        "train_return_per_bar": 2.2793565963294875,
+        "test_trade_count": 8,
+        "overfit_ratio": 0.352
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 2.3,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 4.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.2547267988273747,
+        "train_return_per_bar": 1.9256984096986836,
+        "test_trade_count": 17,
+        "overfit_ratio": 0.592
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.009596625121531,
+        "train_return_per_bar": 1.0204803906076807,
+        "test_trade_count": 29,
+        "overfit_ratio": 0.508
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 5.4,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.5215904117571395,
+        "train_return_per_bar": 1.0817808906494821,
+        "test_trade_count": 47,
+        "overfit_ratio": 0.711
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=10.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.5,
+        "sl_mult": 1.5,
+        "tp_trail_mult": 0.21,
+        "sl_trail_mult": 4.2,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.4000000000000004,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.2664220638076245,
+        "train_return_per_bar": 1.6304105502453332,
+        "test_trade_count": 11,
+        "overfit_ratio": 0.382
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=10.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.5,
+        "sl_mult": 1.5,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 2.7,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.1,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.340429154269717,
+        "train_return_per_bar": 0.9118540172313009,
+        "test_trade_count": 23,
+        "overfit_ratio": 0.39
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=10.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 10.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.11,
+        "sl_trail_mult": 3.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.057588458243681,
+        "train_return_per_bar": 1.0164252797099897,
+        "test_trade_count": 35,
+        "overfit_ratio": 0.494
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.21,
+        "sl_trail_mult": 3.8000000000000003,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 14,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.030499225339003,
+        "train_return_per_bar": 0.9693475334712423,
+        "test_trade_count": 48,
+        "overfit_ratio": 0.941
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 2.7,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6970021991579658,
+        "train_return_per_bar": 1.0302255451016173,
+        "test_trade_count": 73,
+        "overfit_ratio": 1.478
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6333647459555886,
+        "train_return_per_bar": 0.6745686554774013,
+        "test_trade_count": 111,
+        "overfit_ratio": 1.065
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 1.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.38140260019432815,
+        "train_return_per_bar": 0.6144677082398523,
+        "test_trade_count": 174,
+        "overfit_ratio": 1.611
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.8000000000000003,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 5.1000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.679449639706488,
+        "train_return_per_bar": 1.1814285040268728,
+        "test_trade_count": 30,
+        "overfit_ratio": 0.703
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 3.6,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0964679799976136,
+        "train_return_per_bar": 1.1337009954568418,
+        "test_trade_count": 47,
+        "overfit_ratio": 1.034
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 3.9000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6729996163678638,
+        "train_return_per_bar": 0.6274514881366408,
+        "test_trade_count": 77,
+        "overfit_ratio": 0.932
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 1.4,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.4000000000000004,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.43921705086819585,
+        "train_return_per_bar": 0.567331857871576,
+        "test_trade_count": 127,
+        "overfit_ratio": 1.292
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.13,
+        "sl_trail_mult": 5.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.2000000000000002,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.0237594140325257,
+        "train_return_per_bar": 1.2286668797775775,
+        "test_trade_count": 18,
+        "overfit_ratio": 0.406
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.0554902034666185,
+        "train_return_per_bar": 1.2748437419089695,
+        "test_trade_count": 26,
+        "overfit_ratio": 0.62
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 3.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 3.0,
+        "max_holding_bars": 11,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.3041691071114994,
+        "train_return_per_bar": 0.8001815057515199,
+        "test_trade_count": 56,
+        "overfit_ratio": 0.614
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 4.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7593373179902845,
+        "train_return_per_bar": 0.6141292743862216,
+        "test_trade_count": 99,
+        "overfit_ratio": 0.809
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 2.0,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 5.7,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.2754026270965255,
+        "train_return_per_bar": 1.5982557458365358,
+        "test_trade_count": 9,
+        "overfit_ratio": 0.303
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 3.4000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.0215531810471026,
+        "train_return_per_bar": 1.3820314001226195,
+        "test_trade_count": 18,
+        "overfit_ratio": 0.457
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.21,
+        "sl_trail_mult": 2.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.7328119231340113,
+        "train_return_per_bar": 0.6579848852980598,
+        "test_trade_count": 37,
+        "overfit_ratio": 0.38
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.19999999999999998,
+        "sl_trail_mult": 5.2,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0790968026092274,
+        "train_return_per_bar": 0.6127538350459578,
+        "test_trade_count": 68,
+        "overfit_ratio": 0.568
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 5.7,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.179670836014756,
+        "train_return_per_bar": 2.1178930517907926,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.409
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 2.0,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.273960740721591,
+        "train_return_per_bar": 1.6127334452817916,
+        "test_trade_count": 15,
+        "overfit_ratio": 0.493
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 0.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 14,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.9726346361990426,
+        "train_return_per_bar": 0.733771575018697,
+        "test_trade_count": 30,
+        "overfit_ratio": 0.372
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 2.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.963846568602255,
+        "train_return_per_bar": 0.9093817872427913,
+        "test_trade_count": 60,
+        "overfit_ratio": 0.943
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 2.9000000000000004,
+        "tp_trail_mult": 0.11,
+        "sl_trail_mult": 3.4000000000000004,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.191974430930898,
+        "train_return_per_bar": 1.982717129526526,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.382
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 2.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.3765474973044762,
+        "train_return_per_bar": 1.7059480438794872,
+        "test_trade_count": 15,
+        "overfit_ratio": 0.505
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 4.4,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.177763755323649,
+        "train_return_per_bar": 0.9014684669338581,
+        "test_trade_count": 27,
+        "overfit_ratio": 0.414
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 1.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.399158902284397,
+        "train_return_per_bar": 1.0729651484237623,
+        "test_trade_count": 49,
+        "overfit_ratio": 0.767
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=14.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.1,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 1.6,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.2000000000000002,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 6.6861584910961405,
+        "train_return_per_bar": 2.583845561375183,
+        "test_trade_count": 8,
+        "overfit_ratio": 0.386
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=14.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 3.0,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.613255505083267,
+        "train_return_per_bar": 2.442766735543203,
+        "test_trade_count": 12,
+        "overfit_ratio": 0.53
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=14.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.4,
+        "sl_mult": 1.7000000000000002,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 3.3000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.228841332999333,
+        "train_return_per_bar": 0.7945246237282083,
+        "test_trade_count": 22,
+        "overfit_ratio": 0.356
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=14.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 14.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 2.8000000000000003,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 14,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.625206092890377,
+        "train_return_per_bar": 0.9128755250506206,
+        "test_trade_count": 35,
+        "overfit_ratio": 0.562
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 5.4,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.9180243124336993,
+        "train_return_per_bar": 0.8906906507289927,
+        "test_trade_count": 47,
+        "overfit_ratio": 0.97
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.836560427931367,
+        "train_return_per_bar": 0.8450910150616598,
+        "test_trade_count": 73,
+        "overfit_ratio": 1.01
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.13,
+        "sl_trail_mult": 4.7,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.6,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6776390186236838,
+        "train_return_per_bar": 0.60647264580048,
+        "test_trade_count": 109,
+        "overfit_ratio": 0.895
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.16,
+        "sl_trail_mult": 5.300000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4884996270855291,
+        "train_return_per_bar": 0.6102185651652944,
+        "test_trade_count": 169,
+        "overfit_ratio": 1.249
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.6,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.4552826575920725,
+        "train_return_per_bar": 1.1285060301076104,
+        "test_trade_count": 30,
+        "overfit_ratio": 0.775
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 1.9000000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.9907637686706329,
+        "train_return_per_bar": 1.1684893387364645,
+        "test_trade_count": 48,
+        "overfit_ratio": 1.179
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 3.4000000000000004,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6286687278420244,
+        "train_return_per_bar": 0.7184894542117181,
+        "test_trade_count": 83,
+        "overfit_ratio": 1.143
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.16999999999999998,
+        "sl_trail_mult": 4.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.3310468675586934,
+        "train_return_per_bar": 0.6178415495184217,
+        "test_trade_count": 131,
+        "overfit_ratio": 1.866
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 2.0,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 3.3000000000000003,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.3,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.0306056944558577,
+        "train_return_per_bar": 0.9399778554313964,
+        "test_trade_count": 17,
+        "overfit_ratio": 0.31
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 3.3000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.028568169468473,
+        "train_return_per_bar": 0.9904275866665675,
+        "test_trade_count": 27,
+        "overfit_ratio": 0.488
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 2.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.2160207581230167,
+        "train_return_per_bar": 0.5124518918195403,
+        "test_trade_count": 57,
+        "overfit_ratio": 0.421
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.11,
+        "sl_trail_mult": 1.4,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6611658785747235,
+        "train_return_per_bar": 0.5089447431035072,
+        "test_trade_count": 101,
+        "overfit_ratio": 0.77
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 2.7,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 1.9000000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.872026770970283,
+        "train_return_per_bar": 1.2263484311014599,
+        "test_trade_count": 11,
+        "overfit_ratio": 0.252
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 2.7,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 2.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.089479790321806,
+        "train_return_per_bar": 1.013114941874584,
+        "test_trade_count": 17,
+        "overfit_ratio": 0.328
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.300000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.791151842293653,
+        "train_return_per_bar": 0.7973605704189163,
+        "test_trade_count": 34,
+        "overfit_ratio": 0.445
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.9643605201238598,
+        "train_return_per_bar": 0.6441756463499833,
+        "test_trade_count": 68,
+        "overfit_ratio": 0.668
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 3.3000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.229943327702652,
+        "train_return_per_bar": 1.4267938126257067,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.273
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.5,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 3.3000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.1366625814754245,
+        "train_return_per_bar": 1.2116766749511312,
+        "test_trade_count": 16,
+        "overfit_ratio": 0.386
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.9000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 3.8000000000000003,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.2,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.949195622967236,
+        "train_return_per_bar": 0.7771832853964596,
+        "test_trade_count": 33,
+        "overfit_ratio": 0.399
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.2,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 4.7,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.2688970135795432,
+        "train_return_per_bar": 0.7175584066518303,
+        "test_trade_count": 56,
+        "overfit_ratio": 0.565
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 2.4000000000000004,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 3.6,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.381987336333847,
+        "train_return_per_bar": 1.5358973606032138,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.285
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 1.3,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.7258690584777874,
+        "train_return_per_bar": 1.418216899007696,
+        "test_trade_count": 14,
+        "overfit_ratio": 0.381
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 3.8000000000000003,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.6,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.0697006802941216,
+        "train_return_per_bar": 0.778070634965117,
+        "test_trade_count": 28,
+        "overfit_ratio": 0.376
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.2687467560833816,
+        "train_return_per_bar": 0.9461402995204705,
+        "test_trade_count": 48,
+        "overfit_ratio": 0.746
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=17.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 2.7,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 6.696978506909663,
+        "train_return_per_bar": 2.5355965862972294,
+        "test_trade_count": 8,
+        "overfit_ratio": 0.379
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=17.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.2,
+        "sl_mult": 2.7,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.086825722367582,
+        "train_return_per_bar": 2.3544919259838406,
+        "test_trade_count": 13,
+        "overfit_ratio": 0.576
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=17.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 2.4000000000000004,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 3.8000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.3,
+        "max_holding_bars": 6,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.51992902548766,
+        "train_return_per_bar": 0.6848969945085375,
+        "test_trade_count": 21,
+        "overfit_ratio": 0.272
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=17.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 17.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 4.8,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.6444974203538858,
+        "train_return_per_bar": 0.7775582934052284,
+        "test_trade_count": 35,
+        "overfit_ratio": 0.473
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.6,
+        "sl_mult": 3.5,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 5.1000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0631704680204117,
+        "train_return_per_bar": 1.0138573663599701,
+        "test_trade_count": 46,
+        "overfit_ratio": 0.954
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 4.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5954948542952194,
+        "train_return_per_bar": 0.9747954381389276,
+        "test_trade_count": 74,
+        "overfit_ratio": 1.637
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.5,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 2.4000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4529504567979387,
+        "train_return_per_bar": 0.6934569265883443,
+        "test_trade_count": 108,
+        "overfit_ratio": 1.531
+      }
+    },
+    {
+      "entry_key": "atr_factor=2.5|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 2.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 1.2000000000000002,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.8,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.38077116219436813,
+        "train_return_per_bar": 0.6576503449092147,
+        "test_trade_count": 169,
+        "overfit_ratio": 1.727
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 4.7,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.6781663153907764,
+        "train_return_per_bar": 1.07872318945481,
+        "test_trade_count": 29,
+        "overfit_ratio": 0.643
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.13,
+        "sl_trail_mult": 2.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.0332494636514817,
+        "train_return_per_bar": 1.1090293654969199,
+        "test_trade_count": 51,
+        "overfit_ratio": 1.073
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 5.1000000000000005,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.7000000000000002,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6776447347966521,
+        "train_return_per_bar": 0.592097633584653,
+        "test_trade_count": 79,
+        "overfit_ratio": 0.874
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.0|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 0.9,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.39290647366807846,
+        "train_return_per_bar": 0.6216960393978778,
+        "test_trade_count": 131,
+        "overfit_ratio": 1.582
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 2.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.4000000000000004,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.2996994660134464,
+        "train_return_per_bar": 0.9081408532581625,
+        "test_trade_count": 17,
+        "overfit_ratio": 0.275
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 3.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.8,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.7970039860813172,
+        "train_return_per_bar": 1.1241104483069646,
+        "test_trade_count": 29,
+        "overfit_ratio": 0.626
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.3,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 2.9000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.0,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.1041982702918147,
+        "train_return_per_bar": 0.7181505823005013,
+        "test_trade_count": 61,
+        "overfit_ratio": 0.65
+      }
+    },
+    {
+      "entry_key": "atr_factor=3.5|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 3.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.11,
+        "sl_trail_mult": 4.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7686565030359561,
+        "train_return_per_bar": 0.6938869047065687,
+        "test_trade_count": 104,
+        "overfit_ratio": 0.903
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 2.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.136296153018514,
+        "train_return_per_bar": 1.2735973578537627,
+        "test_trade_count": 11,
+        "overfit_ratio": 0.248
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 3.2,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.5,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.3409844052120334,
+        "train_return_per_bar": 1.1305185627938554,
+        "test_trade_count": 17,
+        "overfit_ratio": 0.338
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 2.8000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.954261990396752,
+        "train_return_per_bar": 0.7941421224392465,
+        "test_trade_count": 36,
+        "overfit_ratio": 0.406
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.0|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.043083473190894,
+        "train_return_per_bar": 0.7502344090635783,
+        "test_trade_count": 72,
+        "overfit_ratio": 0.719
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.8000000000000003,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 2.3,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.757208881970181,
+        "train_return_per_bar": 1.291015744951556,
+        "test_trade_count": 11,
+        "overfit_ratio": 0.271
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.13999999999999999,
+        "sl_trail_mult": 2.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.7000000000000002,
+        "max_holding_bars": 7,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.206553192081838,
+        "train_return_per_bar": 1.0402422167066017,
+        "test_trade_count": 16,
+        "overfit_ratio": 0.324
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.19999999999999998,
+        "sl_trail_mult": 5.6000000000000005,
+        "active_trail_sl": true,
+        "time_decay_sl": true,
+        "time_decay_mult": 1.6,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.868924424194896,
+        "train_return_per_bar": 0.360235332517736,
+        "test_trade_count": 33,
+        "overfit_ratio": 0.193
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.25|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.25,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 4.2,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.2000000000000002,
+        "max_holding_bars": 15,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.106536486118704,
+        "train_return_per_bar": 0.5147238489243031,
+        "test_trade_count": 60,
+        "overfit_ratio": 0.465
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=20.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.0,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 1.2000000000000002,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.8,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 5.5978581242675265,
+        "train_return_per_bar": 1.543414397175127,
+        "test_trade_count": 10,
+        "overfit_ratio": 0.276
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 2.9000000000000004,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 0.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 3.30333106692994,
+        "train_return_per_bar": 1.2814107958452954,
+        "test_trade_count": 16,
+        "overfit_ratio": 0.388
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.7,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 2.2,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 14,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.123248486035038,
+        "train_return_per_bar": 0.6855275287185038,
+        "test_trade_count": 31,
+        "overfit_ratio": 0.323
+      }
+    },
+    {
+      "entry_key": "atr_factor=4.5|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 4.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 3.2,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.4610928195151611,
+        "train_return_per_bar": 0.8687824393844953,
+        "test_trade_count": 51,
+        "overfit_ratio": 0.595
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=20.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.4000000000000001,
+        "sl_mult": 3.1,
+        "tp_trail_mult": 0.13,
+        "sl_trail_mult": 4.5,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 4.049190355782791,
+        "train_return_per_bar": 1.9718945243696464,
+        "test_trade_count": 11,
+        "overfit_ratio": 0.487
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=20.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.15,
+        "sl_trail_mult": 2.8000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 2.4060762570957195,
+        "train_return_per_bar": 1.0877952811420855,
+        "test_trade_count": 20,
+        "overfit_ratio": 0.452
+      }
+    },
+    {
+      "entry_key": "atr_factor=5.0|atr_period=20.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "atr_period": 20.0,
+        "atr_factor": 5.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 4.0,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.4000000000000004,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 1.6055648150085493,
+        "train_return_per_bar": 1.2091498066430708,
+        "test_trade_count": 36,
+        "overfit_ratio": 0.753
+      }
+    }
+  ],
+  "bb": [
+    {
+      "entry_key": "bb_period=5.0|bb_std=1.5|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.19,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6505634190649736,
+        "train_return_per_bar": 0.6021918921487724,
+        "test_trade_count": 535,
+        "overfit_ratio": 0.926
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=1.5|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.2,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.1,
+        "max_holding_bars": 18,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5170168305977857,
+        "train_return_per_bar": 0.5726131780097152,
+        "test_trade_count": 621,
+        "overfit_ratio": 1.108
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=1.5|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.21,
+        "sl_trail_mult": 0.7,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4251726255309666,
+        "train_return_per_bar": 0.5771748084732985,
+        "test_trade_count": 691,
+        "overfit_ratio": 1.358
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=1.5|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 4.300000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5048818891218712,
+        "train_return_per_bar": 0.6028150292842858,
+        "test_trade_count": 748,
+        "overfit_ratio": 1.194
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 5.2,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 13,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7486334211131439,
+        "train_return_per_bar": 0.6158107826338232,
+        "test_trade_count": 390,
+        "overfit_ratio": 0.823
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.3000000000000003,
+        "tp_trail_mult": 0.04,
+        "sl_trail_mult": 5.4,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.7,
+        "max_holding_bars": 11,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4882893014595753,
+        "train_return_per_bar": 0.4721752650811978,
+        "test_trade_count": 479,
+        "overfit_ratio": 0.967
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.0|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 0.9,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 3.0,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.558515317907396,
+        "train_return_per_bar": 0.5976569185000181,
+        "test_trade_count": 577,
+        "overfit_ratio": 1.07
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.0|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.8,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 5.5,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5117110775529733,
+        "train_return_per_bar": 0.5883546056221424,
+        "test_trade_count": 668,
+        "overfit_ratio": 1.15
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.2|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.2,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 6.0,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.5,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7660496126940459,
+        "train_return_per_bar": 0.5799524003866992,
+        "test_trade_count": 302,
+        "overfit_ratio": 0.757
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.2|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.2,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 1.8,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.7,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5075482838865883,
+        "train_return_per_bar": 0.5220690408895882,
+        "test_trade_count": 368,
+        "overfit_ratio": 1.029
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.2|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.2,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 5.300000000000001,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.5,
+        "max_holding_bars": 14,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4069780824434158,
+        "train_return_per_bar": 0.510351739537525,
+        "test_trade_count": 483,
+        "overfit_ratio": 1.254
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.2|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.2,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.1,
+        "sl_trail_mult": 4.1,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.6,
+        "max_holding_bars": 13,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.395317545584027,
+        "train_return_per_bar": 0.5098872561699477,
+        "test_trade_count": 598,
+        "overfit_ratio": 1.29
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.5|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.08,
+        "sl_trail_mult": 1.4,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.0,
+        "max_holding_bars": 17,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6659240190974062,
+        "train_return_per_bar": 0.39190674973500056,
+        "test_trade_count": 208,
+        "overfit_ratio": 0.589
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.5|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.4000000000000004,
+        "tp_trail_mult": 0.19999999999999998,
+        "sl_trail_mult": 3.9000000000000004,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.3836098145378795,
+        "train_return_per_bar": 0.37645415024198325,
+        "test_trade_count": 255,
+        "overfit_ratio": 0.981
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.5|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.18,
+        "sl_trail_mult": 2.8000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.3,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.3298732338604499,
+        "train_return_per_bar": 0.38209984214184056,
+        "test_trade_count": 343,
+        "overfit_ratio": 1.158
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.5|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 3.6,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.5,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4192621877438144,
+        "train_return_per_bar": 0.43280472891078575,
+        "test_trade_count": 470,
+        "overfit_ratio": 1.032
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.8|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.8,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 5.800000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6547092675659176,
+        "train_return_per_bar": 0.5143622882486057,
+        "test_trade_count": 148,
+        "overfit_ratio": 0.786
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.8|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.8,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.19999999999999998,
+        "sl_trail_mult": 2.9000000000000004,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.4,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.35392820053194435,
+        "train_return_per_bar": 0.43322588474333473,
+        "test_trade_count": 182,
+        "overfit_ratio": 1.224
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.8|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.8,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.6,
+        "tp_trail_mult": 0.03,
+        "sl_trail_mult": 1.7000000000000002,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.1,
+        "max_holding_bars": 12,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.34055324342270826,
+        "train_return_per_bar": 0.4559401671744788,
+        "test_trade_count": 260,
+        "overfit_ratio": 1.339
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=2.8|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 2.8,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 0.5,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.6,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4014806204538679,
+        "train_return_per_bar": 0.4415100574720878,
+        "test_trade_count": 375,
+        "overfit_ratio": 1.1
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=3.2|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 3.2,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.2,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 2.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.6,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6710563258213631,
+        "train_return_per_bar": 0.5519689745963178,
+        "test_trade_count": 101,
+        "overfit_ratio": 0.823
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=3.2|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 3.2,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.02,
+        "sl_trail_mult": 1.0,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.564919590416758,
+        "train_return_per_bar": 0.5664441511806481,
+        "test_trade_count": 125,
+        "overfit_ratio": 1.003
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=3.2|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 3.2,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.06,
+        "sl_trail_mult": 2.7,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 2.8000000000000003,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5483467058454323,
+        "train_return_per_bar": 0.5277731366528723,
+        "test_trade_count": 169,
+        "overfit_ratio": 0.962
+      }
+    },
+    {
+      "entry_key": "bb_period=5.0|bb_std=3.2|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 5.0,
+        "bb_std": 3.2,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.9000000000000001,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 1.1,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.8,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.4766295932024263,
+        "train_return_per_bar": 0.4484763257122641,
+        "test_trade_count": 283,
+        "overfit_ratio": 0.941
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=1.5|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 5.6000000000000005,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.1,
+        "max_holding_bars": 19,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.9077200618860531,
+        "train_return_per_bar": 0.8173313525102739,
+        "test_trade_count": 404,
+        "overfit_ratio": 0.9
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=1.5|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.9000000000000004,
+        "tp_trail_mult": 0.21,
+        "sl_trail_mult": 5.800000000000001,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.9000000000000001,
+        "max_holding_bars": 21,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.7395057855996657,
+        "train_return_per_bar": 0.6667745236901287,
+        "test_trade_count": 498,
+        "overfit_ratio": 0.902
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=1.5|max_setup_hold_bars=10.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 10.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.07,
+        "sl_trail_mult": 2.8000000000000003,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.5,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.6582404329271254,
+        "train_return_per_bar": 0.7271581635291752,
+        "test_trade_count": 601,
+        "overfit_ratio": 1.105
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=1.5|max_setup_hold_bars=15.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 1.5,
+        "max_setup_hold_bars": 15.0
+      },
+      "tbm_params": {
+        "tp_mult": 0.7,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.09000000000000001,
+        "sl_trail_mult": 4.4,
+        "active_trail_sl": true,
+        "time_decay_sl": false,
+        "time_decay_mult": 0.9,
+        "max_holding_bars": 16,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.5686316017546711,
+        "train_return_per_bar": 0.6136754399229661,
+        "test_trade_count": 698,
+        "overfit_ratio": 1.079
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=2.0|max_setup_hold_bars=5.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 5.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.0,
+        "sl_mult": 3.8000000000000003,
+        "tp_trail_mult": 0.05,
+        "sl_trail_mult": 3.0,
+        "active_trail_sl": false,
+        "time_decay_sl": true,
+        "time_decay_mult": 0.7,
+        "max_holding_bars": 20,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.9953341749214891,
+        "train_return_per_bar": 0.6859109958291904,
+        "test_trade_count": 290,
+        "overfit_ratio": 0.689
+      }
+    },
+    {
+      "entry_key": "bb_period=7.0|bb_std=2.0|max_setup_hold_bars=7.0",
+      "numeric_entry_params": {
+        "bb_period": 7.0,
+        "bb_std": 2.0,
+        "max_setup_hold_bars": 7.0
+      },
+      "tbm_params": {
+        "tp_mult": 1.1,
+        "sl_mult": 4.0,
+        "tp_trail_mult": 0.12000000000000001,
+        "sl_trail_mult": 0.6,
+        "active_trail_sl": false,
+        "time_decay_sl": false,
+        "time_decay_mult": 1.3,
+        "max_holding_bars": 22,
+        "exit_on_close": true
+      },
+      "metrics": {
+        "return_per_bar": 0.8197267084739357,
+        "train_return_per_bar": 0.5871680989684239,
+        "test_trade_count": 358,
+        "overfit_ratio": 0.716
+      }
+    }
+  ]
+}
