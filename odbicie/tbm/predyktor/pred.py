@@ -69,6 +69,27 @@ except ImportError:
     _SKLEARN_AVAILABLE = False
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Harshness
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _compute_harshness(rec: Dict[str, Any], strat: str) -> float:
+    ep = rec.get('numeric_entry_params', {})
+    hold = ep.get('max_setup_hold_bars', 10.0)
+    
+    if strat == 'base':
+        h_main = (ep.get('threshold_pct', 0.02) - 0.02) / (0.40 - 0.02)
+        h_hold = 1.0 - (hold - 1.0) / (35.0 - 1.0)
+    elif strat == 'atr':
+        h_main = (ep.get('atr_factor', 2.0) - 2.0) / (5.5 - 2.0)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+    else:  # bb
+        h_main = (ep.get('bb_std', 1.5) - 1.5) / (3.5 - 1.5)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+        
+    return float(np.clip(0.6 * h_main + 0.4 * h_hold, 0, 1))
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Constants
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -162,11 +183,13 @@ class TbmPredictor:
         lookup_path: str,
         strategy: str,
         cache_dir: Optional[str] = None,
+        max_harshness: float = 1.0,
     ) -> None:
         self.lookup_path = lookup_path
         self.strategy = strategy
         self.cache_dir = cache_dir if cache_dir else os.path.dirname(os.path.abspath(lookup_path))
-        self._pkl_path = os.path.join(self.cache_dir, f'tbm_predictor_{strategy}.pkl')
+        self.max_harshness = max_harshness
+        self._pkl_path = os.path.join(self.cache_dir, f'tbm_predictor_{strategy}_{max_harshness}.pkl')
 
         self._records: List[Dict[str, Any]] = []
         self._scaler = None
@@ -259,7 +282,18 @@ class TbmPredictor:
             return
         with open(self.lookup_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        self._records = data.get(self.strategy, [])
+            
+        all_records = data.get(self.strategy, [])
+        
+        filtered_records = []
+        for rec in all_records:
+            harshness = _compute_harshness(rec, self.strategy)
+            
+            # Only keep setups/trades with harshness <= max_harshness
+            if harshness <= self.max_harshness:
+                filtered_records.append(rec)
+                
+        self._records = filtered_records
 
     def _ensure_trained(self) -> None:
         if not _SKLEARN_AVAILABLE:
@@ -405,10 +439,10 @@ class TbmPredictor:
         self._cls_chain = cls_chain
         self._trained_record_count = len(self._records)
 
-        print(
+        '''print(
             f'[TbmPredictor] Trained on {len(X)} records for strategy=\'{self.strategy}\' '
             f'({len(self._feature_keys)} features -> {len(_REG_TARGETS)} reg + {len(_CLS_TARGETS)} cls targets)'
-        )
+        )'''
 
     def _save_pkl(self) -> None:
         os.makedirs(self.cache_dir, exist_ok=True)

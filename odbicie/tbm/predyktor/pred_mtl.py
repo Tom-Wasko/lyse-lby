@@ -55,6 +55,29 @@ try:
 except ImportError:
     _TORCH_AVAILABLE = False
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Harshness
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _compute_harshness(rec: Dict[str, Any], strat: str) -> float:
+    ep = rec.get('numeric_entry_params', {})
+    hold = ep.get('max_setup_hold_bars', 10.0)
+    
+    if strat == 'base':
+        h_main = (ep.get('threshold_pct', 0.02) - 0.02) / (0.40 - 0.02)
+        h_hold = 1.0 - (hold - 1.0) / (35.0 - 1.0)
+    elif strat == 'atr':
+        h_main = (ep.get('atr_factor', 2.0) - 2.0) / (5.5 - 2.0)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+    else:  # bb
+        h_main = (ep.get('bb_std', 1.5) - 1.5) / (3.5 - 1.5)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+        
+    return float(np.clip(0.6 * h_main + 0.4 * h_hold, 0, 1))
+
+
+
 # Reuse the same constants as TbmPredictor for full compatibility
 MIN_RECORDS = 15
 
@@ -82,6 +105,22 @@ _FEATURE_KEYS: Dict[str, List[str]] = {
 # ─────────────────────────────────────────────────────────────────────────────
 # Internal helpers  (same as pred.py to stay independent)
 # ─────────────────────────────────────────────────────────────────────────────
+
+def _compute_harshness(rec: Dict[str, Any], strat: str) -> float:
+    ep = rec.get('numeric_entry_params', {})
+    hold = ep.get('max_setup_hold_bars', 10.0)
+    
+    if strat == 'base':
+        h_main = (ep.get('threshold_pct', 0.02) - 0.02) / (0.40 - 0.02)
+        h_hold = 1.0 - (hold - 1.0) / (35.0 - 1.0)
+    elif strat == 'atr':
+        h_main = (ep.get('atr_factor', 2.0) - 2.0) / (5.5 - 2.0)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+    else:  # bb
+        h_main = (ep.get('bb_std', 1.5) - 1.5) / (3.5 - 1.5)
+        h_hold = 1.0 - (hold - 3.0) / (20.0 - 3.0)
+        
+    return float(np.clip(0.6 * h_main + 0.4 * h_hold, 0, 1))
 
 def _normalized_distance(
     params_a: Dict[str, float],
@@ -198,6 +237,7 @@ class TbmPredictorMTL:
         lookup_path: str,
         strategy: str,
         cache_dir: Optional[str] = None,
+        max_harshness: float = 1.0,
         n_epochs: int = 500,
         patience: int = 40,
         hidden: int = 64,
@@ -206,12 +246,13 @@ class TbmPredictorMTL:
         self.lookup_path = lookup_path
         self.strategy    = strategy
         self.cache_dir   = cache_dir if cache_dir else os.path.dirname(os.path.abspath(lookup_path))
+        self.max_harshness = max_harshness
         self.n_epochs    = n_epochs
         self.patience    = patience
         self.hidden      = hidden
         self.dropout     = dropout
 
-        self._pt_path    = os.path.join(self.cache_dir, f'tbm_predictor_mtl_{strategy}.pt')
+        self._pt_path    = os.path.join(self.cache_dir, f'tbm_predictor_mtl_{strategy}_{max_harshness}.pt')
 
         self._records: List[Dict[str, Any]] = []
         self._scaler     = None
@@ -323,7 +364,18 @@ class TbmPredictorMTL:
             return
         with open(self.lookup_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        self._records = data.get(self.strategy, [])
+            
+        all_records = data.get(self.strategy, [])
+        
+        filtered_records = []
+        for rec in all_records:
+            harshness = _compute_harshness(rec, self.strategy)
+            
+            # Only keep setups/trades with harshness <= max_harshness
+            if harshness <= self.max_harshness:
+                filtered_records.append(rec)
+                
+        self._records = filtered_records
 
     def _ensure_trained(self) -> None:
         if not _TORCH_AVAILABLE:
@@ -533,10 +585,10 @@ class TbmPredictorMTL:
 
         net.eval()
 
-        print(
+        '''print(
             f'[TbmPredictorMTL] Trained on {n} records for strategy=\'{self.strategy}\' '
             f'({n_features} features -> {n_reg} reg + {n_cls} cls heads)'
-        )
+        )'''
 
         return scaler, Y_reg_mean, Y_reg_std, net
 

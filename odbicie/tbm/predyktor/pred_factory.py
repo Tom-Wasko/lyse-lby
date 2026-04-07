@@ -30,6 +30,7 @@ def get_predictor(
     lookup_path: str,
     strategy: str,
     cache_dir: Optional[str] = None,
+    max_harshness: float = 1.0,
 ) -> Union['TbmPredictor', 'TbmPredictorMTL']:
     """
     Return a ready-to-use predictor instance.
@@ -54,11 +55,11 @@ def get_predictor(
 
     if ptype == 'xgb':
         from tbm.predyktor.pred import TbmPredictor
-        return TbmPredictor(lookup_path, strategy, cache_dir=cache_dir)
+        return TbmPredictor(lookup_path, strategy, cache_dir=cache_dir, max_harshness=max_harshness)
 
     if ptype == 'mtl':
         from tbm.predyktor.pred_mtl import TbmPredictorMTL
-        return TbmPredictorMTL(lookup_path, strategy, cache_dir=cache_dir)
+        return TbmPredictorMTL(lookup_path, strategy, cache_dir=cache_dir, max_harshness=max_harshness)
 
     raise ValueError(
         f"Unknown predictor_type={predictor_type!r}. Valid options: 'xgb', 'mtl'."
