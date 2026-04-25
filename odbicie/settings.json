@@ -1,6 +1,6 @@
 {
   "data_settings": {
-    "market": "all",
+    "market": "sp500",
     "interval": "1week",
     "vol_enabled": true,
     "vol_ratio_window": 20,
